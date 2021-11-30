@@ -46,7 +46,28 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(i, i, i), x.evaluate(i, i));
 		}
 	}
-
+	
+	@Test
+	public void testCosineXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("cosine(x)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.cos(i),Math.cos(i),Math.cos(i)), e.evaluate(i,i));
+		}
+	}
+	@Test
+	public void testCosineYEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("cosine(y)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.cos(i),Math.cos(i),Math.cos(i)), e.evaluate(i,i));
+		}
+	}
+	@Test
+	public void testPlusEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("x+y");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i+i,i+i,i+i), e.evaluate(i,i));
+		}
+	}
 	// TODO: More tests of evaluation
 
 }
