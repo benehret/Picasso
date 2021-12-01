@@ -24,7 +24,7 @@ public class EvaluaterInput implements Command<Pixmap> {
 	public void execute(Pixmap target) {
 		// create the expression to evaluate just once
 		 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		    System.out.println("Enter expression");
+		    System.out.println("Enter expression:");
 		    String test = myObj.nextLine();  // Read user input
 		  
 		ExpressionTreeNode expr = createExpression(test);
