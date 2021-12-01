@@ -21,9 +21,12 @@ public class PlusAnalyzer implements SemanticAnalyzerInterface {
 		// the parameters are the next tokens on the stack.
 		// But, they need to be processed
 		// TODO: Need to finish.
-		return new Plus(SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens),SemanticAnalyzer.getInstance().generateExpressionTree(
-						tokens));
+		ExpressionTreeNode param1=SemanticAnalyzer.getInstance().generateExpressionTree(
+				tokens);
+		ExpressionTreeNode param2=SemanticAnalyzer.getInstance().generateExpressionTree(
+				tokens);
+				
+		return new Plus(param2,param1);
 	}
 
 }
