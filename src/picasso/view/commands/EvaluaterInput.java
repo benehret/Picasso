@@ -2,12 +2,29 @@ package picasso.view.commands;
 
 import java.awt.Color;
 import java.util.Scanner;
+
+import javax.swing.JOptionPane;
+
 import java.awt.Dimension;
 
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.LayoutManager;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import java.util.Scanner;
+import java.awt.Dimension;
+
 
 /**
  * Evaluate an expression for each pixel in a image.
@@ -22,12 +39,9 @@ public class EvaluaterInput implements Command<Pixmap> {
 	 * Evaluate an expression for each point in the image.
 	 */
 	public void execute(Pixmap target) {
-		// create the expression to evaluate just once
-		 Scanner myObj = new Scanner(System.in);  // Create a Scanner object
-		    System.out.println("Enter expression:");
-		    String test = myObj.nextLine();  // Read user input
-		  
-		ExpressionTreeNode expr = createExpression(test);
+		  TextBox happy= new TextBox();
+		 String result= happy.getResult();
+		ExpressionTreeNode expr = createExpression(result);
 		// evaluate it for each pixel
 		Dimension size = target.getSize();
 		for (int imageY = 0; imageY < size.height; imageY++) {
