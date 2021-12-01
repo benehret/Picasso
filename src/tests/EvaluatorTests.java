@@ -49,4 +49,20 @@ public class EvaluatorTests {
 
 	// TODO: More tests of evaluation
 
+	@Test
+	public void testTangentXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("tangent(x)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.tan(i),Math.tan(i),Math.tan(i)), e.evaluate(i,i));
+		}
+	}
+
+	@Test
+	public void testTangentYEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("tangent(y)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.tan(i),Math.tan(i),Math.tan(i)), e.evaluate(i,i));
+		}
+	}
+	
 }
