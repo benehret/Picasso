@@ -3,6 +3,8 @@ package picasso.view.commands;
 import java.awt.Color;
 import java.awt.Dimension;
 
+import javax.swing.JTextField;
+
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
@@ -18,8 +20,13 @@ import picasso.Main;
 public class EvaluatorInput implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
-	private String test;
+	private JTextField myTextField;
 
+	public EvaluatorInput(JTextField field)
+	{
+		myTextField = field;
+	}
+	
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
@@ -55,9 +62,12 @@ public class EvaluatorInput implements Command<Pixmap> {
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
 		
-		// Wish we could pause here until get input
+		//String input = whatever we get form the JTExtBox
+		String input = myTextField.getText();
+		
+		System.out.println("INPUT: " + input);
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(test);
+		return expTreeGen.makeExpression(input);
 	}
 
 }

@@ -17,7 +17,7 @@ import picasso.view.commands.*;
  */
 @SuppressWarnings("serial")
 public class Frame extends JFrame {
-	public JTextField textField;
+	private JTextField textField = new JTextField(16);
 	
 	public Frame(Dimension size) {
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -31,11 +31,10 @@ public class Frame extends JFrame {
 		commands.add("Open", new Reader());
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluater()));
 		commands.add("Save", new Writer());
-		commands.add("User Input", new ThreadedCommand<Pixmap>(canvas, new EvaluatorInput()));
+		commands.add("User Input", new ThreadedCommand<Pixmap>(canvas, new EvaluatorInput(this.textField)));
 
 		//add a JTextBox
 		//https://study.com/academy/lesson/adding-jtexfields-jbuttons-tool-tips-to-a-jframe-in-java.html
-		JTextField textField = new JTextField("User Input");
 		commands.add(textField);
 
 		// add our container to Frame and show it
