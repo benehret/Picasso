@@ -7,22 +7,24 @@ import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
-
+import picasso.view.Frame;
+import picasso.Main;
 /**
  * Evaluate an expression for each pixel in a image.
  * 
  * @author Robert C Duvall
  * @author Sara Sprenkle
  */
-public class Evaluater implements Command<Pixmap> {
+public class EvaluatorInput implements Command<Pixmap> {
+	private TextBox happy = new TextBox();
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
+	private String test;
 
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
 	public void execute(Pixmap target) {
-		// create the expression to evaluate just once
 		ExpressionTreeNode expr = createExpression();
 		// evaluate it for each pixel
 		Dimension size = target.getSize();
@@ -35,7 +37,7 @@ public class Evaluater implements Command<Pixmap> {
 			}
 		}
 	}
-
+	
 	/**
 	 * Convert from image space to domain space.
 	 */
@@ -44,6 +46,7 @@ public class Evaluater implements Command<Pixmap> {
 		return ((double) value / bounds) * range + DOMAIN_MIN;
 	}
 
+	
 	/**
 	 * 
 	 * A place holder for a more interesting way to build the expression.
@@ -52,18 +55,10 @@ public class Evaluater implements Command<Pixmap> {
 		// Note, when you're testing, you can use the ExpressionTreeGenerator to
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
-
-		String test = "floor(y)";
-		//String test = "ceil(y)";
-		//String test = "x + y";
-
-
-		String test = "sine(y)";
-
+		
+		// Wish we could pause here until get input
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
-
-		// return new Multiply( new X(), new Y() );
 	}
 
 }
