@@ -18,7 +18,6 @@ import javax.swing.*;
 class TextBox extends JFrame implements ActionListener {
  // JTextField
  static JTextField t;
-
  // JFrame
  static JFrame f;
  // JButton
@@ -83,11 +82,14 @@ class TextBox extends JFrame implements ActionListener {
          t.setText("  ");
          
          answer = true;
+         
+         
          }
     }
  	
  	public String getTextInput()
  	{
- 		return t.getText();
+ 		//return t.getText();
+ 		return "ceil(x)";
  	}
  }
