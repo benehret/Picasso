@@ -1,3 +1,5 @@
+
+
 package picasso.view.commands;
 
 import java.awt.Color;
@@ -8,30 +10,35 @@ import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 
+
 /**
  * Evaluate an expression for each pixel in a image.
  * 
- * @author Robert C Duvall
- * @author Sara Sprenkle
+ * @author john
  */
-public class Evaluater implements Command<Pixmap> {
+public class EvaluaterInput implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
+	
 
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
 	public void execute(Pixmap target) {
-		// create the expression to evaluate just once
-		ExpressionTreeNode expr = createExpression();
-		// evaluate it for each pixel
-		Dimension size = target.getSize();
-		for (int imageY = 0; imageY < size.height; imageY++) {
-			double evalY = imageToDomainScale(imageY, size.height);
-			for (int imageX = 0; imageX < size.width; imageX++) {
-				double evalX = imageToDomainScale(imageX, size.width);
-				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
-				target.setColor(imageX, imageY, pixelColor);
+		TextBox happy= new TextBox();
+		happy.frame();
+		if (happy.getAnswer() == true) {
+			String result = happy.getResult();
+			ExpressionTreeNode expr = createExpression(result);
+			// evaluate it for each pixel
+			Dimension size = target.getSize();
+			for (int imageY = 0; imageY < size.height; imageY++) {
+				double evalY = imageToDomainScale(imageY, size.height);
+				for (int imageX = 0; imageX < size.width; imageX++) {
+					double evalX = imageToDomainScale(imageX, size.width);
+					Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
+					target.setColor(imageX, imageY, pixelColor);
+				}
 			}
 		}
 	}
@@ -48,18 +55,10 @@ public class Evaluater implements Command<Pixmap> {
 	 * 
 	 * A place holder for a more interesting way to build the expression.
 	 */
-	private ExpressionTreeNode createExpression() {
+	private ExpressionTreeNode createExpression(String test) {
 		// Note, when you're testing, you can use the ExpressionTreeGenerator to
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
-
-		String test = "floor(y)";
-		//String test = "ceil(y)";
-		//String test = "x + y";
-
-
-		String test = "sine(y)";
-
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
 
