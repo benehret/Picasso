@@ -28,8 +28,6 @@ public class Frame extends JFrame {
 		commands.add("Open", new Reader());
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluater()));
 		commands.add("Save", new Writer());
-		commands.add("Input Expression", new ThreadedCommand<Pixmap>(canvas, new EvaluaterInput()));
-
 		// add our container to Frame and show it
 		getContentPane().add(canvas, BorderLayout.CENTER);
 		getContentPane().add(commands, BorderLayout.NORTH);
