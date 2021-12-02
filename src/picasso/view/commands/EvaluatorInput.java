@@ -55,7 +55,7 @@ public class EvaluatorInput implements Command<Pixmap> {
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
 		
-		// Wish we could pause here until get input
+		//String input = whatever we get form the JTExtBox
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
 	}
