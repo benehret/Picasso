@@ -11,7 +11,6 @@ import picasso.view.Frame;
  */
 public class Main {
 	public static final Dimension SIZE = new Dimension(600, 600);
-	public static Frame frame;
 
 	public static void main(String[] args) {
 		Frame frame = new Frame(SIZE);
