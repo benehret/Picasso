@@ -16,7 +16,6 @@ import picasso.Main;
  * @author Sara Sprenkle
  */
 public class EvaluatorInput implements Command<Pixmap> {
-	private TextBox happy = new TextBox();
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 	private String test;

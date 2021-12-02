@@ -67,6 +67,7 @@ public class EvaluatorTests {
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(i+i,i+i,i+i), e.evaluate(i,i));
 		}
+	}
 	public void testSineXEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("sine(x)");
 		for (int i = -1; i <= 1; i++) {
