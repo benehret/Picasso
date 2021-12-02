@@ -57,6 +57,9 @@ public class Evaluater implements Command<Pixmap> {
 		String test = "ceil(y)";
 		//String test = "x + y";
 
+		String test = "sine(y)";
+		// String test = "x + y";
+
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
 

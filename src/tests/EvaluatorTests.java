@@ -46,6 +46,22 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(i, i, i), x.evaluate(i, i));
 		}
 	}
+	
+	@Test
+	public void testSineXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("sine(x)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.sin(i),Math.sin(i),Math.sin(i)), e.evaluate(i,i));
+		}
+	}
+	
+	@Test
+	public void testSineYEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("sine(y)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.sin(i),Math.sin(i),Math.sin(i)), e.evaluate(i,i));
+		}
+	}
 
 	@Test
 	public void testCeilEvealuator()
