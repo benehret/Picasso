@@ -14,7 +14,8 @@ import picasso.util.Command;
  * @author Robert C Duvall
  * @author Sara Sprenkle
  */
-public class Evaluater implements Command<Pixmap> {
+public class EvaluatorInput implements Command<Pixmap> {
+	private TextBox happy;
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 
@@ -22,7 +23,8 @@ public class Evaluater implements Command<Pixmap> {
 	 * Evaluate an expression for each point in the image.
 	 */
 	public void execute(Pixmap target) {
-		// create the expression to evaluate just once
+		TextBox happy = new TextBox();
+		happy.frame();
 		ExpressionTreeNode expr = createExpression();
 		// evaluate it for each pixel
 		Dimension size = target.getSize();
@@ -35,7 +37,7 @@ public class Evaluater implements Command<Pixmap> {
 			}
 		}
 	}
-
+	
 	/**
 	 * Convert from image space to domain space.
 	 */
@@ -44,6 +46,7 @@ public class Evaluater implements Command<Pixmap> {
 		return ((double) value / bounds) * range + DOMAIN_MIN;
 	}
 
+	
 	/**
 	 * 
 	 * A place holder for a more interesting way to build the expression.
@@ -52,18 +55,9 @@ public class Evaluater implements Command<Pixmap> {
 		// Note, when you're testing, you can use the ExpressionTreeGenerator to
 		// generate expression trees from strings, or you can create expression
 		// objects directly (as in the commented statement below).
-
-		//String test = "floor(y)";
-		String test = "ceil(y)";
-		//String test = "x + y";
-
-		String test = "sine(y)";
-		// String test = "x + y";
-
+		String test = happy.getTextInput();
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
-
-		// return new Multiply( new X(), new Y() );
 	}
 
 }

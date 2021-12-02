@@ -63,6 +63,16 @@ public class EvaluatorTests {
 		}
 	}
 
+	@Test
+	public void testCeilEvealuator()
+	{
+		ExpressionTreeNode e = parser.makeExpression("ceil(x)");
+		Ceil c = new Ceil(e);
+		assertEquals(new RGBColor (-1,-1,-1), c.evaluate(-1, -1));
+		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
+		assertEquals(new RGBColor (1, 1, 1), c.evaluate(1, 1));
+		
+	}
 	// TODO: More tests of evaluation
 
 }
