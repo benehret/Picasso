@@ -84,12 +84,12 @@ public class ParsedExpressionTreeTests {
 
 	@Test
 	public void CosFunctionTests() {
-		ExpressionTreeNode e = parser.makeExpression("sin( x )");
-		assertEquals(new Sin(new X()), e);
-		e = parser.makeExpression("sin( y )");
-		assertEquals(new Sin(new Y()), e);
-		e = parser.makeExpression("sin( x + y )");
-		assertEquals(new Sin(new Plus(new X(), new Y())), e);
+		ExpressionTreeNode e = parser.makeExpression("cos( x )");
+		assertEquals(new Cos(new X()), e);
+		e = parser.makeExpression("cos( y )");
+		assertEquals(new Cos(new Y()), e);
+		e = parser.makeExpression("cos( x + y )");
+		assertEquals(new Cos(new Plus(new X(), new Y())), e);
 	}
 
 }
