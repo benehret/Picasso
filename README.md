@@ -1,3 +1,6 @@
+## Authors
+Danish, Nicholas, John, Bennett
+
 # Picasso
 
 An application that allows the user to create expressions that
@@ -19,4 +22,3 @@ See the specification for Picasso on the course web site
 
 The `images` directory contains some sample images generated from Picasso.  Some of the expressions for these images can be found in the `expressions` directory.
 
-Danish, Nicholas, John, Bennett
