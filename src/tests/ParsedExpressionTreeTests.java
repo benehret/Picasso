@@ -92,4 +92,13 @@ public class ParsedExpressionTreeTests {
 		assertEquals(new Cos(new Plus(new X(), new Y())), e);
 	}
 
+	@Test
+	public void CeilFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
+		assertEquals(new Cos(new X()), e);
+		e = parser.makeExpression("ceil( y )");
+		assertEquals(new Cos(new Y()), e);
+		e = parser.makeExpression("ceil( x + y )");
+		assertEquals(new Cos(new Plus(new X(), new Y())), e);
+	}
 }
