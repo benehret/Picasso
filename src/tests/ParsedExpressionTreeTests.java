@@ -72,4 +72,33 @@ public class ParsedExpressionTreeTests {
 		assertEquals(new Floor(new Plus(new X(), new Y())), e);
 	}
 
+	
+	@Test
+	public void tanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("tan( x )");
+		assertEquals(new Tan(new X()), e);
+
+		e = parser.makeExpression("tan( x + y )");
+		assertEquals(new Tan(new Plus(new X(), new Y())), e);
+  }
+
+	@Test
+	public void CosFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("cos( x )");
+		assertEquals(new Cos(new X()), e);
+		e = parser.makeExpression("cos( y )");
+		assertEquals(new Cos(new Y()), e);
+		e = parser.makeExpression("cos( x + y )");
+		assertEquals(new Cos(new Plus(new X(), new Y())), e);
+	}
+
+	@Test
+	public void CeilFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("ceil( x )");
+		assertEquals(new Cos(new X()), e);
+		e = parser.makeExpression("ceil( y )");
+		assertEquals(new Cos(new Y()), e);
+		e = parser.makeExpression("ceil( x + y )");
+		assertEquals(new Cos(new Plus(new X(), new Y())), e);
+	}
 }

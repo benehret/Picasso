@@ -12,10 +12,11 @@ import picasso.util.Command;
 import picasso.view.Frame;
 import picasso.Main;
 /**
- * Evaluate an expression for each pixel in a image.
+ * Evaluate an expression using userinput for each pixel in a image.
  * 
  * @author Robert C Duvall
  * @author Sara Sprenkle
+ * @author Nicolas
  */
 public class EvaluatorInput implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;

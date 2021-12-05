@@ -19,5 +19,3 @@ public class ErrorReporting {
 		JOptionPane.showMessageDialog(myFrame,
     		    "Eggs are not supposed to be green.");
     }
-
-}

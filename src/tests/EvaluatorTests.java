@@ -48,15 +48,15 @@ public class EvaluatorTests {
 	}
 	
 	@Test
-	public void testCosineXEvaluation() {
-		ExpressionTreeNode e = parser.makeExpression("cosine(x)");
+	public void testCosXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("cos(x)");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(Math.cos(i),Math.cos(i),Math.cos(i)), e.evaluate(i,i));
 		}
 	}
 	@Test
-	public void testCosineYEvaluation() {
-		ExpressionTreeNode e = parser.makeExpression("cosine(y)");
+	public void testCosYEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("cos(y)");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(Math.cos(i),Math.cos(i),Math.cos(i)), e.evaluate(i,i));
 		}
@@ -68,23 +68,23 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(i+i,i+i,i+i), e.evaluate(i,i));
 		}
 	}
-	public void testSineXEvaluation() {
-		ExpressionTreeNode e = parser.makeExpression("sine(x)");
+	public void testSinXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("sin(x)");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(Math.sin(i),Math.sin(i),Math.sin(i)), e.evaluate(i,i));
 		}
 	}
 	
 	@Test
-	public void testSineYEvaluation() {
-		ExpressionTreeNode e = parser.makeExpression("sine(y)");
+	public void testSinYEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("sin(y)");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(Math.sin(i),Math.sin(i),Math.sin(i)), e.evaluate(i,i));
 		}
 	}
 
 	@Test
-	public void testCeilEvealuator()
+	public void testCeilEvaluator()
 	{
 		ExpressionTreeNode e = parser.makeExpression("ceil(x)");
 		Ceil c = new Ceil(e);
@@ -97,16 +97,16 @@ public class EvaluatorTests {
 	// TODO: More tests of evaluation
 
 	@Test
-	public void testTangentXEvaluation() {
-		ExpressionTreeNode e = parser.makeExpression("tangent(x)");
+	public void testTanXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("tan(x)");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(Math.tan(i),Math.tan(i),Math.tan(i)), e.evaluate(i,i));
 		}
 	}
 
 	@Test
-	public void testTangentYEvaluation() {
-		ExpressionTreeNode e = parser.makeExpression("tangent(y)");
+	public void testTanYEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("tan(y)");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(Math.tan(i),Math.tan(i),Math.tan(i)), e.evaluate(i,i));
 		}

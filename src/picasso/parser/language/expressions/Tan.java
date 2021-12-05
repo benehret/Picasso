@@ -8,13 +8,13 @@ import picasso.parser.language.ExpressionTreeNode;
  *
  */
 
-public class Tangent extends UnaryFunction{
+public class Tan extends UnaryFunction{
 	/**
 	 * Create a Tangent expression that takes as a parameter the given expression
 	 * 
 	 * @param param the expression to tangent
 	 */
-	public Tangent(ExpressionTreeNode param) {
+	public Tan(ExpressionTreeNode param) {
 		super(param);
 	}
 
@@ -44,10 +44,10 @@ public class Tangent extends UnaryFunction{
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof Tangent)) {
+		if (!(obj instanceof Tan)) {
 			return false;
 		}
-		Tangent t = (Tangent) obj;
+		Tan t = (Tan) obj;
 		return param.equals(t.param);
 	}
 }
