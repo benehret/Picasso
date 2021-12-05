@@ -33,7 +33,7 @@ public class EvaluatorInput implements Command<Pixmap> {
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
-	public void execute(Pixmap target) {
+	public void execute(Pixmap target) throws NullPointerException {
 		ExpressionTreeNode expr = createExpression();
 		// evaluate it for each pixel
 		Dimension size = target.getSize();
@@ -41,8 +41,15 @@ public class EvaluatorInput implements Command<Pixmap> {
 			double evalY = imageToDomainScale(imageY, size.height);
 			for (int imageX = 0; imageX < size.width; imageX++) {
 				double evalX = imageToDomainScale(imageX, size.width);
+				try 
+				{
 				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 				target.setColor(imageX, imageY, pixelColor);
+				}
+				catch (NullPointerException e)
+				{
+					ErrorReporting.reportException(e);
+				}
 			}
 		}
 	}
@@ -75,10 +82,11 @@ public class EvaluatorInput implements Command<Pixmap> {
 		{
 			return expTreeGen.makeExpression(input);
 		}
-		catch (ParseException e)
+		// https://stackoverflow.com/questions/3495926/can-i-catch-multiple-java-exceptions-in-the-same-catch-clause
+		catch (ParseException  e)
 		{
 			//System.out.println("Crap");
-			ErrorReporting.reportParseException(e);
+			ErrorReporting.reportException(e);
 			// How can I do this without having this return statement here?
 			return expTreeGen.makeExpression(input);
 		}

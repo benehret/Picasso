@@ -15,7 +15,7 @@ public class ErrorReporting {
     	myFrame = frame;
     }
     
-    public static void reportParseException(ParseException e)
+    public static void reportException(Exception e)
     {
 		JOptionPane.showMessageDialog(myFrame,
     		    e.toString());
