@@ -34,7 +34,7 @@ public class ExpressionTreeGenerator {
 	 * @return ExpressionTreeNode representing the root node of the given infix
 	 *         formula
 	 */
-	public ExpressionTreeNode makeExpression(String infix) {
+	public ExpressionTreeNode makeExpression(String infix) throws ParseException{
 		Stack<Token> postfix = infixToPostfix(infix);
 
 		if (postfix.isEmpty()) {
@@ -61,7 +61,7 @@ public class ExpressionTreeGenerator {
 	 * @param infix
 	 * @return a stack of tokens, in postfix order
 	 */
-	private Stack<Token> infixToPostfix(String infix) {
+	private Stack<Token> infixToPostfix(String infix) throws ParseException{
 
 		// Algorithm for converting infix to postfix was adapted from
 		// http://en.wikipedia.org/wiki/Shunting_yard_algorithm
