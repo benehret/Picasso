@@ -43,9 +43,8 @@ public class EvaluatorInput implements Command<Pixmap> {
 					double evalX = imageToDomainScale(imageX, size.width);
 					if (expr == null)
 					{
-						IllegalArgumentException e = new IllegalArgumentException("Please enter a valid input.");
-						ErrorReporting.reportException(e);
-						
+						ErrorReporting.reportException(new IllegalArgumentException("Please enter a valid input."));
+						break imageLoop;
 					}
 					Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 					target.setColor(imageX, imageY, pixelColor);
