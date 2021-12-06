@@ -3,28 +3,27 @@ package picasso.parser.language.expressions;
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
- * Represents the Plus function in the Picasso language.
+ * Represents the Addition operator in the Picasso language.
  * 
- * @author Robert C. Duvall
- * @author Sara Sprenkle
- * 
+ * @author John Adekola
  */
-public class Plus extends BinaryFunction {
+public class Addition extends BinaryFunction {
 
 	/**
-	 * Create a floor expression that takes as a parameter the given expression
+	 * Create a Addition expression that takes as a parameter two  given expressions
 	 * 
-	 * @param param the expression to floor
+	 * @param param the first expression
+	 * @param2 param2 the second expression
 	 */
-	public Plus(ExpressionTreeNode param, ExpressionTreeNode param2) {
+	public Addition(ExpressionTreeNode param, ExpressionTreeNode param2) {
 		super(param,param2);
 	}
 
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the floor of
-	 * the function's parameter.
+	 * Evaluates this expression at the given x,y point by evaluating the addition of
+	 * the function's parameters.
 	 * 
-	 * @return the color from evaluating the floor of the expression's parameter
+	 * @return the color from evaluating the addition of the expression's parameters
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
@@ -48,10 +47,10 @@ public class Plus extends BinaryFunction {
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof Plus)) {
+		if (!(obj instanceof Addition)) {
 			return false;
 		}
-		Plus f = (Plus) obj;
+		Addition f = (Addition) obj;
 		if( !param.equals(f.param)) {
 			return false;
 		}
