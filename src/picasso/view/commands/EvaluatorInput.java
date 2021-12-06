@@ -46,6 +46,7 @@ public class EvaluatorInput implements Command<Pixmap> {
 						Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 						target.setColor(imageX, imageY, pixelColor);
 					}
+					// TODO: Probably make a more user friendly error message
 					catch (NullPointerException e)
 					{
 						ErrorReporting.reportException(e);
