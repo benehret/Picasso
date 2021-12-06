@@ -7,10 +7,10 @@ import javax.swing.JTextField;
 
 import picasso.model.Pixmap;
 import picasso.parser.ExpressionTreeGenerator;
+import picasso.parser.ParseException;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
-import picasso.view.Frame;
-import picasso.Main;
+import picasso.view.errorReporting.ErrorReporting;
 /**
  * Evaluate an expression using userinput for each pixel in a image.
  * 
@@ -31,16 +31,24 @@ public class EvaluatorInput implements Command<Pixmap> {
 	/**
 	 * Evaluate an expression for each point in the image.
 	 */
-	public void execute(Pixmap target) {
+	public void execute(Pixmap target) throws NullPointerException {
 		ExpressionTreeNode expr = createExpression();
 		// evaluate it for each pixel
 		Dimension size = target.getSize();
-		for (int imageY = 0; imageY < size.height; imageY++) {
-			double evalY = imageToDomainScale(imageY, size.height);
-			for (int imageX = 0; imageX < size.width; imageX++) {
-				double evalX = imageToDomainScale(imageX, size.width);
-				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
-				target.setColor(imageX, imageY, pixelColor);
+		// https://stackoverflow.com/questions/886955/how-do-i-break-out-of-nested-loops-in-java
+		imageLoop: {
+			for (int imageY = 0; imageY < size.height; imageY++) {
+				double evalY = imageToDomainScale(imageY, size.height);
+				for (int imageX = 0; imageX < size.width; imageX++) {
+					double evalX = imageToDomainScale(imageX, size.width);
+					if (expr == null)
+					{
+						ErrorReporting.reportException(new IllegalArgumentException("Please enter a valid input."));
+						break imageLoop;
+					}
+					Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
+					target.setColor(imageX, imageY, pixelColor);
+				}	
 			}
 		}
 	}
@@ -68,7 +76,19 @@ public class EvaluatorInput implements Command<Pixmap> {
 		
 		System.out.println("INPUT: " + input);
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
-		return expTreeGen.makeExpression(input);
+		// ExpressionTreeNode expression = expTreeGen.makeExpression(input); 
+		try 
+		{
+			return expTreeGen.makeExpression(input);
+		}
+		// https://stackoverflow.com/questions/3495926/can-i-catch-multiple-java-exceptions-in-the-same-catch-clause
+		catch (ParseException  e)
+		{
+			//System.out.println("Crap");
+			ErrorReporting.reportException(e);
+			// How can I do this without having this return statement here?
+			return expTreeGen.makeExpression(input);
+		}
 	}
 
 }
