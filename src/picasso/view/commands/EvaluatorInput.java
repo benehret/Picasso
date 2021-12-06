@@ -35,19 +35,23 @@ public class EvaluatorInput implements Command<Pixmap> {
 		ExpressionTreeNode expr = createExpression();
 		// evaluate it for each pixel
 		Dimension size = target.getSize();
-		for (int imageY = 0; imageY < size.height; imageY++) {
-			double evalY = imageToDomainScale(imageY, size.height);
-			for (int imageX = 0; imageX < size.width; imageX++) {
-				double evalX = imageToDomainScale(imageX, size.width);
-				try 
-				{
-				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
-				target.setColor(imageX, imageY, pixelColor);
-				}
-				catch (NullPointerException e)
-				{
-					ErrorReporting.reportException(e);
-				}
+		// https://stackoverflow.com/questions/886955/how-do-i-break-out-of-nested-loops-in-java
+		imageLoop: {
+			for (int imageY = 0; imageY < size.height; imageY++) {
+				double evalY = imageToDomainScale(imageY, size.height);
+				for (int imageX = 0; imageX < size.width; imageX++) {
+					double evalX = imageToDomainScale(imageX, size.width);
+					try 
+					{
+						Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
+						target.setColor(imageX, imageY, pixelColor);
+					}
+					catch (NullPointerException e)
+					{
+						ErrorReporting.reportException(e);
+						break imageLoop;
+					}
+				}	
 			}
 		}
 	}
