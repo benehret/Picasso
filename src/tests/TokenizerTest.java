@@ -14,6 +14,7 @@ import picasso.parser.language.expressions.X;
 import picasso.parser.tokens.*;
 import picasso.parser.tokens.chars.*;
 import picasso.parser.tokens.functions.*;
+import picasso.parser.tokens.operations.*;
 
 public class TokenizerTest {
 
@@ -24,7 +25,7 @@ public class TokenizerTest {
 	public void setUp() throws Exception {
 		tokenizer = new Tokenizer();
 	}
-	
+
 	/**
 	 * Test that parsing an expression with a comment works
 	 */
@@ -34,7 +35,7 @@ public class TokenizerTest {
 		List<Token> tokens = tokenizer.parseTokens(expression);
 		assertEquals(new IdentifierToken("x"), tokens.get(0));
 		assertEquals(1, tokens.size());
-		
+
 		expression = "// everything is a comment";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(0, tokens.size());
@@ -89,13 +90,12 @@ public class TokenizerTest {
 		assertEquals(new RightParenToken(), tokens.get(3));
 	}
 
-	
 	@Test
 	public void testTokenizeTanFunctionExpression() {
 		String expression = "tan(x)";
 		tokens = tokenizer.parseTokens(expression);
 		assertEquals(new TanToken(), tokens.get(0));
-    assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new LeftParenToken(), tokens.get(1));
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 	}
@@ -119,8 +119,39 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 	}
-	
 
+	@Test
+	public void testTokenizeMinusOperatorExpression() {
+		String expression = "x-y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new MinusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizePlusOperatorExpression() {
+		String expression = "x+y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new PlusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeCombinedOperatorExpression() {
+		String expression = "x+y-y+y-x";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new PlusToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		assertEquals(new MinusToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new PlusToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new MinusToken(), tokens.get(7));
+		assertEquals(new IdentifierToken("x"), tokens.get(8));
+	}
 	@Test
 	public void testTokenizeCombinedFunctionExpression() {
 		String expression = "perlinColor(floor(x), y)";

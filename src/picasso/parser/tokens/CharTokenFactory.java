@@ -27,7 +27,6 @@ public class CharTokenFactory {
 		}
 		return tokenList[ch];
 	}
-
 	static {
 		tokenList[CharConstants.LEFT_PAREN] = new LeftParenToken();
 		tokenList[CharConstants.RIGHT_PAREN] = new RightParenToken();
@@ -36,6 +35,11 @@ public class CharTokenFactory {
 		tokenList[CharConstants.EQUAL] = new EqualsToken();
 		tokenList[CharConstants.COMMA] = new CommaToken();
 		tokenList[CharConstants.PLUS] = new PlusToken();
+		tokenList[CharConstants.MINUS] = new MinusToken();	
+		 tokenList[CharConstants.STAR] = new TimesToken(); //multiplication
+		 tokenList[CharConstants.SLASH] = new DivideToken(); //divide
+		 tokenList[CharConstants.MOD] = new ModToken();// mod
+		 tokenList[CharConstants.CARET] = new ExponentiateToken();// exponetation
 
 		// TODO: What other tokens should be in here?
 		// TODO: Need to create the associated Token classes too.
