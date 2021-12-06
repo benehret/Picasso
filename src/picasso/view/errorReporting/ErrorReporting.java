@@ -17,6 +17,8 @@ public class ErrorReporting {
     
     public static void reportException(Exception e)
     {
+    	// TODO Make the message just be the dialogue not the whole shebang
+    	// gonna have to do some string slicing after finding the colon
 		JOptionPane.showMessageDialog(myFrame,
     		    e.toString());
 	}

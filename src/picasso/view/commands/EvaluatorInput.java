@@ -10,9 +10,7 @@ import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.ParseException;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
-import picasso.view.Frame;
 import picasso.view.errorReporting.ErrorReporting;
-import picasso.Main;
 /**
  * Evaluate an expression using userinput for each pixel in a image.
  * 
