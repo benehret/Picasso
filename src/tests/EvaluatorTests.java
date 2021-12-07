@@ -62,14 +62,43 @@ public class EvaluatorTests {
 		}
 	}
 	@Test
-	public void testPlusEvaluation() {
+	public void testAdditionEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("x+y");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(i+i,i+i,i+i), e.evaluate(i,i));
 		}
 	}
 	@Test
-	public void testMinusEvaluation() {
+	public void testModuloEvaluation() {
+		ExpressionTreeNode c = parser.makeExpression("x%y");
+		assertEquals(new RGBColor (-1%-1,-1%-1,-1%-1), c.evaluate(-1, -1));
+		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
+		assertEquals(new RGBColor (1%1, 1%1, 1%1), c.evaluate(1, 1));
+		
+	}
+	@Test
+	public void testDivisionEvaluation() {
+		ExpressionTreeNode c = parser.makeExpression("x/y");
+		assertEquals(new RGBColor (-1/-1,-1/-1,-1/-1), c.evaluate(-1, -1));
+		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
+		assertEquals(new RGBColor (1/1, 1/1, 1/1), c.evaluate(1, 1));
+	}
+	@Test
+	public void testManipulationEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("x*y");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(i*i,i*i,i*i), e.evaluate(i,i));
+		}
+	}
+	@Test
+	public void testExponentiationEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("x^y");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.pow(i, i),Math.pow(i, i),Math.pow(i, i)), e.evaluate(i,i));
+		}
+	}
+	@Test
+	public void testSubstractionEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("x-y");
 		for (int i = -1; i <= 1; i++) {
 			assertEquals(new RGBColor(i-i,i-i,i-i), e.evaluate(i,i));
@@ -102,7 +131,6 @@ public class EvaluatorTests {
 		
 
 	}
-	// TODO: More tests of evaluation
 
 	@Test
 	public void testTanXEvaluation() {
