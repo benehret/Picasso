@@ -148,4 +148,11 @@ public class EvaluatorTests {
 		}
 	}
 	
+	@Test
+	public void testWrapXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("tan(x+x)");
+		assertEquals(e.evaluate(0,0), e.evaluate(-1, -1));
+		assertEquals(e.evaluate(0, 0), e.evaluate(1, 1));
+	}
+	
 }
