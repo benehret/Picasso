@@ -26,14 +26,27 @@ public class Wrap extends UnaryFunction{
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		/*
-		RGBColor result = param.evaluate(x, y);
-		double red = Math.tan(result.getRed());
-		double green = Math.tan(result.getGreen());
-		double blue = Math.tan(result.getBlue());
+		
+		double tempx = x;
+		double tempy = y;
 
-		return new RGBColor(red, green, blue);
-		*/
+		if(x<-1) {
+			tempx = Math.abs(-1 - x);
+			tempx = 1- tempx;
+		} else if(x>1) {
+			tempx = Math.abs(x-1);
+			tempx = -1 + tempx;
+		}
+		if(y<-1) {
+			tempy = Math.abs(-1 - y);
+			tempy = 1- tempy;
+		} else if(y>1) {
+			tempy = Math.abs(y-1);
+			tempy = -1 + tempy;
+		}
+		RGBColor result = param.evaluate(tempx, tempy);
+
+		return result;
 	}
 
 	/*
