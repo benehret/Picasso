@@ -4,11 +4,12 @@ import picasso.parser.language.ExpressionTreeNode;
 
 /**
  * Represents the Wrap function in the Picasso language.
+ * 
  * @author Bennett Ehret
  *
  */
 
-public class Wrap extends UnaryFunction{
+public class Wrap extends UnaryFunction {
 	/**
 	 * Create a Wrap expression that takes as a parameter the given expression
 	 * 
@@ -26,27 +27,26 @@ public class Wrap extends UnaryFunction{
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		
-		double tempx = x;
-		double tempy = y;
+		RGBColor result = param.evaluate(x, y);
+		double red = wrap(result.getRed());
+		double green = wrap(result.getGreen());
+		double blue = wrap(result.getBlue());
 
-		if(x<-1) {
-			tempx = Math.abs(-1 - x);
-			tempx = 1- tempx;
-		} else if(x>1) {
-			tempx = Math.abs(x-1);
-			tempx = -1 + tempx;
-		}
-		if(y<-1) {
-			tempy = Math.abs(-1 - y);
-			tempy = 1- tempy;
-		} else if(y>1) {
-			tempy = Math.abs(y-1);
-			tempy = -1 + tempy;
-		}
-		RGBColor result = param.evaluate(tempx, tempy);
+		return new RGBColor(red, green, blue);
+	}
 
-		return result;
+	public static double wrap(double color) {
+		double tempcolor = color;
+		while (tempcolor < -1 || tempcolor > 1) {
+			if (tempcolor < -1) {
+				tempcolor = Math.abs(-1 - tempcolor);
+				tempcolor = 1 - tempcolor;
+			} else if (tempcolor > 1) {
+				tempcolor = Math.abs(tempcolor - 1);
+				tempcolor = -1 + tempcolor;
+			}
+		}
+		return tempcolor;
 	}
 
 	/*
@@ -66,4 +66,3 @@ public class Wrap extends UnaryFunction{
 		return param.equals(w.param);
 	}
 }
-
