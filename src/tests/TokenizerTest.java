@@ -111,6 +111,14 @@ public class TokenizerTest {
 	}
 
 	@Test
+	public void testTokenizeNegateOperatorExpression() {
+		String expression = "!x";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new NegateToken(), tokens.get(0));
+		assertEquals(new IdentifierToken("x"), tokens.get(1));
+
+	}
+	@Test
 	public void testTokenizeCeilFunctionExpression() {
 		String expression = "ceil(x)";
 		tokens = tokenizer.parseTokens(expression);
@@ -119,7 +127,6 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 	}
-
 	@Test
 	public void testTokenizeMinusOperatorExpression() {
 		String expression = "x-y";

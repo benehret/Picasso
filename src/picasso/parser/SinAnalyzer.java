@@ -13,7 +13,7 @@ import picasso.parser.tokens.Token;
  * 
  */
 
-public class SinAnalyzer extends UnaryFunctionAnalyzer {
+public class SinAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {

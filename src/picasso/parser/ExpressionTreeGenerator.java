@@ -195,6 +195,8 @@ public class ExpressionTreeGenerator {
 			return ADD_OR_SUBTRACT;
 		else if (token instanceof MinusToken)
 			return ADD_OR_SUBTRACT;
+		else if (token instanceof NegateToken)
+			return ADD_OR_SUBTRACT;
 		else if (token instanceof TimesToken)
 			return MULTIPLY_OR_DIVIDE;
 		else if (token instanceof DivideToken)

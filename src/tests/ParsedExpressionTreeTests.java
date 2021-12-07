@@ -155,7 +155,15 @@ public class ParsedExpressionTreeTests {
 		e = parser.makeExpression("tan( x + y )");
 		assertEquals(new Tan(new Addition(new X(), new Y())), e);
 	}
+	@Test
+	public void NegateOperatorTests() {
+		ExpressionTreeNode e = parser.makeExpression("!x");
+		assertEquals(new Negation(new X()), e);
 
+		e = parser.makeExpression("!y)");
+		assertEquals(new Negation(new Y()), e);
+
+	}
 	@Test
 	public void CosFunctionTests() {
 		ExpressionTreeNode e = parser.makeExpression("cos( x )");
