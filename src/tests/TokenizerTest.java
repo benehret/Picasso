@@ -139,6 +139,42 @@ public class TokenizerTest {
 
 	}
 	@Test
+	public void testTokenizeExponentiateOperatorExpression() {
+		String expression = "x^y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ExponentiateToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeModOperatorExpression() {
+		String expression = "x%y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ModToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeTimesOperatorExpression() {
+		String expression = "x*y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new TimesToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeDivideOperatorExpression() {
+		String expression = "x/y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new DivideToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
 	public void testTokenizeCombinedOperatorExpression() {
 		String expression = "x+y-y+y-x";
 		tokens = tokenizer.parseTokens(expression);
@@ -150,6 +186,20 @@ public class TokenizerTest {
 		assertEquals(new PlusToken(), tokens.get(5));
 		assertEquals(new IdentifierToken("y"), tokens.get(6));
 		assertEquals(new MinusToken(), tokens.get(7));
+		assertEquals(new IdentifierToken("x"), tokens.get(8));
+	}
+	@Test
+	public void testTokenizeCombinedOperatorV2Expression() {
+		String expression = "x%y/y*y^x";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ModToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		assertEquals(new DivideToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new TimesToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new ExponentiateToken(), tokens.get(7));
 		assertEquals(new IdentifierToken("x"), tokens.get(8));
 	}
 	@Test

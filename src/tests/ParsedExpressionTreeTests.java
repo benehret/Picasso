@@ -70,6 +70,66 @@ public class ParsedExpressionTreeTests {
 		assertEquals(new Substraction(new Substraction(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
 	@Test
+	public void ExponentiationExpressionTests() {
+		ExpressionTreeNode e1 = parser.makeExpression("x^y");
+		assertEquals(new Exponentiation(new X(), new Y()), e1);
+
+		// no spaces!
+		ExpressionTreeNode e = parser.makeExpression("y^x");
+		assertEquals(new Exponentiation(new Y(), new X()), e);
+
+		e = parser.makeExpression("[1,.3,-1] ^ y");
+		assertEquals(new Exponentiation(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x ^ y ^ [ -.51, 0, 1]");
+		assertEquals(new Exponentiation(new Exponentiation(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
+	@Test
+	public void ModuloExpressionTests() {
+		ExpressionTreeNode e1 = parser.makeExpression("x % y");
+		assertEquals(new Modulo(new X(), new Y()), e1);
+
+		// no spaces!
+		ExpressionTreeNode e = parser.makeExpression("y%x");
+		assertEquals(new Modulo(new Y(), new X()), e);
+
+		e = parser.makeExpression("[1,.3,-1] % y");
+		assertEquals(new Modulo(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x % y %[ -.51, 0, 1]");
+		assertEquals(new Modulo(new Modulo(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
+	@Test
+	public void DivisionExpressionTests() {
+		ExpressionTreeNode e1 = parser.makeExpression("x / y");
+		assertEquals(new Division(new X(), new Y()), e1);
+
+		// no spaces!
+		ExpressionTreeNode e = parser.makeExpression("y/x");
+		assertEquals(new Division(new Y(), new X()), e);
+
+		e = parser.makeExpression("[1,.3,-1] / y");
+		assertEquals(new Division(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x / y / [ -.51, 0, 1]");
+		assertEquals(new Division(new Division(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
+	@Test
+	public void MultiplicationExpressionTests() {
+		ExpressionTreeNode e1 = parser.makeExpression("x * y");
+		assertEquals(new Multiplication(new X(), new Y()), e1);
+
+		// no spaces!
+		ExpressionTreeNode e = parser.makeExpression("y*x");
+		assertEquals(new Multiplication(new Y(), new X()), e);
+
+		e = parser.makeExpression("[1,.3,-1] * y");
+		assertEquals(new Multiplication(new RGBColor(1, .3, -1), new Y()), e);
+
+		e = parser.makeExpression("x * y *[ -.51, 0, 1]");
+		assertEquals(new Multiplication(new Multiplication(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+	}
+	@Test
 	public void parenthesesExpressionTests() {
 		ExpressionTreeNode e = parser.makeExpression("( x + y )");
 		assertEquals(new Addition(new X(), new Y()), e);

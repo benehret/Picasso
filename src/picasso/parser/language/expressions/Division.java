@@ -30,10 +30,26 @@ public class Division extends BinaryFunction {
 	public RGBColor evaluate(double x, double y) {
 		RGBColor result = param.evaluate(x, y);
 		RGBColor result2 = param2.evaluate(x, y);
+		double red;
+		double green;
+		double blue;
+		if (result2.getRed()==0) {
+			red=0;
+		}else {	
+			red = result.getRed()/ result2.getRed();
+
+		}
+		if (result2.getGreen()==0) {
+			green=0;
+		}else {		
+			green = result.getGreen()/ result2.getGreen();
+		}
+		if (result2.getBlue()==0) {
+			blue=0;
+		}else {	
+			blue = result.getBlue()/ result2.getBlue();
+		}
 		
-		double red = result.getRed()/ result2.getRed();
-		double green = result.getGreen()/ result2.getGreen();
-		double blue = result.getBlue()/ result2.getBlue();
 
 		return new RGBColor(red, green, blue);
 	}
