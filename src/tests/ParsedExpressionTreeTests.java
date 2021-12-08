@@ -160,7 +160,7 @@ public class ParsedExpressionTreeTests {
 		ExpressionTreeNode e = parser.makeExpression("!x");
 		assertEquals(new Negation(new X()), e);
 
-		e = parser.makeExpression("!y)");
+		e = parser.makeExpression("!y");
 		assertEquals(new Negation(new Y()), e);
 
 	}

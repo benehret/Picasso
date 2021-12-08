@@ -11,4 +11,13 @@ public class NegateToken extends CharToken implements OperationInterface {
 	public NegateToken() {
 		super(CharConstants.BANG);
 	}
+
+	/**
+	 * @return the orderOP
+	 */
+	public final int getOrderOP() {
+		return 2;
+	}
+	
+	
 }

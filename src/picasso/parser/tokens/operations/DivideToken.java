@@ -11,4 +11,10 @@ public class DivideToken extends CharToken implements OperationInterface {
 	public DivideToken() {
 		super(CharConstants.SLASH);
 	}
+	/**
+	 * @return the orderOP
+	 */
+	public final int getOrderOP() {
+		return 4;
+	}
 }

@@ -11,4 +11,11 @@ public class ModToken extends CharToken implements OperationInterface {
 	public ModToken() {
 		super(CharConstants.MOD);
 	}
+	@Override
+	/**
+	 * @return the orderOP
+	 */
+	public final int getOrderOP() {
+		return 4;
+	}
 }
