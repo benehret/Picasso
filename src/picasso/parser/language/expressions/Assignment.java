@@ -11,10 +11,12 @@ import picasso.parser.language.ExpressionTreeNode;
  * 
  * @author John Adekola
  */
-public class Assignment extends BinaryFunction {
-	private Map<ExpressionTreeNode, ExpressionTreeNode> assignment = new HashMap<>();
+public class Assignment extends ExpressionTreeNode {
+	private Map<String, ExpressionTreeNode> assignment = new HashMap<>();
+	private String param;
+	private ExpressionTreeNode param2;
 
-
+//Enforoce must be an identifier token
 
 	/**
 	 * Create an Assignment expression that takes as a parameter two  given expressions
@@ -22,8 +24,9 @@ public class Assignment extends BinaryFunction {
 	 * @param param the first expression
 	 * @param2 param2 the second expression
 	 */
-	public Assignment(ExpressionTreeNode param, ExpressionTreeNode param2) {
-		super(param,param2);
+	public Assignment(String param, ExpressionTreeNode param2) {
+		this.param = param;
+		this.param2 = param2;
 		System.out.println(param);
 		System.out.println(param2);
 		assignment.put(param, param2);
