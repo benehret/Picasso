@@ -12,7 +12,7 @@ import picasso.parser.language.ExpressionTreeNode;
  * @author John Adekola
  */
 public class Assignment extends Variable {
-	private Map<String, ExpressionTreeNode> assignment = new HashMap<>();
+	private static Map<String, ExpressionTreeNode> assignment = new HashMap<>();
 	private String param;
 	private ExpressionTreeNode param2;
 
@@ -21,16 +21,16 @@ public class Assignment extends Variable {
 	/**
 	 * Create an Assignment expression that takes as a parameter two  given expressions
 	 * 
-	 * @param param the first expression
+	 * @param variable the first expression
 	 * @param2 param2 the second expression
 	 */
-	public Assignment(String param, ExpressionTreeNode param2) {
-		super (param);
-		this.param = param;
-		this.param2 = param2;
-		System.out.println("PARAM1: " + param);
-		System.out.println("PARAM2: " + param2);
-		assignment.put(param, param2);
+	public Assignment(String variable, ExpressionTreeNode expression) {
+		super (variable);
+		this.param = variable;
+		this.param2 = expression;
+		System.out.println("VARIABLE: " + variable);
+		System.out.println("EXPRESSION: " + expression);
+		assignment.put(variable, expression);
 		System.out.println("DICTIONARY: " + assignment);
 
 	}
@@ -80,4 +80,8 @@ public class Assignment extends Variable {
 		return param2.equals(f.param2);
 	}
 
+	public static Map<String, ExpressionTreeNode> getHashMap()
+	{
+		return assignment;
+	}
 }

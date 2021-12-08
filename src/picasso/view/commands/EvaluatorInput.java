@@ -15,6 +15,7 @@ import picasso.parser.ParseException;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 import picasso.view.errorReporting.ErrorReporting;
+import picasso.parser.language.expressions.Assignment;
 
 /**
  * Evaluate an expression using userinput for each pixel in a image.
@@ -27,7 +28,8 @@ public class EvaluatorInput implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 	private JTextField myTextField;
-	private Map<String, String> assignment = new HashMap<String, String>();
+	private ExpressionTreeNode assignmentValue;
+	private ExpressionTreeNode expr;
 
 	public EvaluatorInput(JTextField field) {
 		myTextField = field;
@@ -37,9 +39,10 @@ public class EvaluatorInput implements Command<Pixmap> {
 	 * Evaluate an expression for each point in the image.
 	 */
 	public void execute(Pixmap target) throws NullPointerException {
-		ExpressionTreeNode expr = createExpression();
+		expr = createExpression();
 		// If the user entered nothing, throw an error message
-		if (expr == null) {
+		if (expr == null) 
+		{
 			ErrorReporting.reportException(new IllegalArgumentException("Please enter a valid input."));
 			
 		}
@@ -49,7 +52,6 @@ public class EvaluatorInput implements Command<Pixmap> {
 			double evalY = imageToDomainScale(imageY, size.height);
 			for (int imageX = 0; imageX < size.width; imageX++) {
 				double evalX = imageToDomainScale(imageX, size.width);
-
 				Color pixelColor = expr.evaluate(evalX, evalY).toJavaColor();
 				target.setColor(imageX, imageY, pixelColor);
 			}
@@ -75,25 +77,18 @@ public class EvaluatorInput implements Command<Pixmap> {
 
 		// String input = whatever we get form the JTExtBox
 		String input = myTextField.getText();
-		/**for (int i = 0; i < input.length(); i++) {
-			if (input.charAt(i) == '=') {
-				String key = input.substring(0, i);
-				input = input.substring(i + 2);
-				assignment.put(key, input);
-				// if(input == key) {
-				// input = assignment.get(key);
-				// }
-			}
-		}
-		for (String key : assignment.keySet()) {
-			if (input.contains(key)) {
-				 input = assignment.get(key);
-				System.out.println(assignment.get(key));
+		
+		// check if the input we got is in the dictionary
+		for (String key : Assignment.getHashMap().keySet()) {
+			System.out.println("KEY: " + key);
+			// https://www.geeksforgeeks.org/compare-two-strings-in-java/#:~:text=Using%20String.,match%2C%20then%20it%20returns%20false.
+			// If it's in the dictionary, return the value (Which is an ExpressionTreeNode)
+			if (input.equals(key)) {
+				System.out.println("GOT IT BOSS");
+				return Assignment.getHashMap().get(key);
 			}
 			
-		}*/
-		System.out.println("INPUT: " + input);
-		System.out.println(assignment);
+		}
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		// ExpressionTreeNode expression = expTreeGen.makeExpression(input);
 		try {
