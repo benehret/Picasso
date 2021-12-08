@@ -11,7 +11,7 @@ import picasso.parser.language.ExpressionTreeNode;
  * 
  * @author John Adekola
  */
-public class Assignment extends ExpressionTreeNode {
+public class Assignment extends Variable {
 	private Map<String, ExpressionTreeNode> assignment = new HashMap<>();
 	private String param;
 	private ExpressionTreeNode param2;
@@ -25,11 +25,13 @@ public class Assignment extends ExpressionTreeNode {
 	 * @param2 param2 the second expression
 	 */
 	public Assignment(String param, ExpressionTreeNode param2) {
+		super (param);
 		this.param = param;
 		this.param2 = param2;
-		System.out.println(param);
-		System.out.println(param2);
+		System.out.println("PARAM1: " + param);
+		System.out.println("PARAM2: " + param2);
 		assignment.put(param, param2);
+		System.out.println("DICTIONARY: " + assignment);
 
 	}
 	
@@ -49,13 +51,13 @@ public class Assignment extends ExpressionTreeNode {
 			String key = (String)mapElement.getKey();
 		}
 		
-		RGBColor result2 = param2.evaluate(x, y);
+		//RGBColor result2 = param2.evaluate(x, y);
 		
-		double red = result2.getRed();
-		double green = result2.getGreen();
-		double blue = result2.getBlue();
+//		double red = result2.getRed();
+//		double green = result2.getGreen();
+//		double blue = result2.getBlue();
 
-		return new RGBColor(red, green, blue);
+		return new RGBColor(1, 1, 1);
 	}
 
 	/*
