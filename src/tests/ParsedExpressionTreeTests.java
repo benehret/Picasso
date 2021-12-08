@@ -183,4 +183,16 @@ public class ParsedExpressionTreeTests {
 		e = parser.makeExpression("ceil( x + y )");
 		assertEquals(new Ceil(new Addition(new X(), new Y())), e);
 	}
+	
+	@Test
+	public void WrapFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("wrap( x )");
+		assertEquals(new Wrap(new X()), e);
+		e = parser.makeExpression("wrap( y )");
+		assertEquals(new Wrap(new Y()), e);
+		e = parser.makeExpression("wrap( x + y )");
+		assertEquals(new Wrap(new Addition(new X(), new Y())), e);
+		e = parser.makeExpression("wrap( x + x )");
+		assertEquals(new Wrap(new Addition(new X(), new X())), e);
+	}
 }

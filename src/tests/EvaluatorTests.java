@@ -154,4 +154,17 @@ public class EvaluatorTests {
 		}
 	}
 	
+	@Test
+	public void testWrapXEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("wrap(x+x)");
+		assertEquals(new RGBColor(0,0,0), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(0,0,0), e.evaluate(1, 1));
+		e = parser.makeExpression("wrap(x+x+x)");
+		assertEquals(new RGBColor(-1,-1,-1), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1));
+		e = parser.makeExpression("wrap(x+x+x+x)");
+		assertEquals(new RGBColor(0,0,0), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(0,0,0), e.evaluate(1, 1));
+	}
+	
 }
