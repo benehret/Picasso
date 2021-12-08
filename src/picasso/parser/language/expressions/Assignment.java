@@ -46,17 +46,7 @@ public class Assignment extends Variable {
 	@Override
 	public RGBColor evaluate(double x, double y) {
 		
-		Iterator hm = assignment.entrySet().iterator();
-		for(Map.Entry mapElement : assignment.entrySet()) {
-			String key = (String)mapElement.getKey();
-		}
-		
-		//RGBColor result2 = param2.evaluate(x, y);
-		
-//		double red = result2.getRed();
-//		double green = result2.getGreen();
-//		double blue = result2.getBlue();
-
+		// TODO ? make it so that when you first assign, you get the expression back?
 		return new RGBColor(1, 1, 1);
 	}
 
