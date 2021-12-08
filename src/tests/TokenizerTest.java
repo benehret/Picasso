@@ -138,6 +138,15 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("y"), tokens.get(2));
 
 	}
+	/**@Test
+	public void testTokenizeAssignmentOperatorExpression() {
+		String expression = "a=x+y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("a"), tokens.get(0));
+		assertEquals(new AssignmentToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x+y"), tokens.get(2));
+
+	}*/
 	@Test
 	public void testTokenizeCombinedOperatorExpression() {
 		String expression = "x+y-y+y-x";

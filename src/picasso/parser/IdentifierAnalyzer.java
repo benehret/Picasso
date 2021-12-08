@@ -41,3 +41,4 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 	}
 
 }
+//use it to extract
