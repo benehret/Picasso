@@ -28,7 +28,6 @@ public class EvaluatorInput implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 	private JTextField myTextField;
-	private ExpressionTreeNode assignmentValue;
 	private ExpressionTreeNode expr;
 
 	public EvaluatorInput(JTextField field) {
@@ -80,11 +79,9 @@ public class EvaluatorInput implements Command<Pixmap> {
 		
 		// check if the input we got is in the dictionary
 		for (String key : Assignment.getHashMap().keySet()) {
-			System.out.println("KEY: " + key);
 			// https://www.geeksforgeeks.org/compare-two-strings-in-java/#:~:text=Using%20String.,match%2C%20then%20it%20returns%20false.
 			// If it's in the dictionary, return the value (Which is an ExpressionTreeNode)
 			if (input.equals(key)) {
-				System.out.println("GOT IT BOSS");
 				return Assignment.getHashMap().get(key);
 			}
 			

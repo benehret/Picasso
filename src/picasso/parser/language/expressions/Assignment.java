@@ -28,10 +28,7 @@ public class Assignment extends Variable {
 		super (variable);
 		this.param = variable;
 		this.param2 = expression;
-		System.out.println("VARIABLE: " + variable);
-		System.out.println("EXPRESSION: " + expression);
 		assignment.put(variable, expression);
-		System.out.println("DICTIONARY: " + assignment);
 
 	}
 	
