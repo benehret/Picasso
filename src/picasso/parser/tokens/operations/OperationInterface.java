@@ -7,6 +7,9 @@ import picasso.parser.tokens.Token;
  * 
  */
 public interface OperationInterface {
-
+	/**
+	 * @return the orderOP
+	 */
+	public int getOrderOP();
 	
 }

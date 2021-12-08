@@ -4,17 +4,20 @@ import picasso.parser.language.CharConstants;
 import picasso.parser.tokens.chars.CharToken;
 
 /**
- * Represents the Divide sign token
+ * Represents the Negate sign token
  * 
  */
-public class DivideToken extends CharToken implements OperationInterface {
-	public DivideToken() {
-		super(CharConstants.SLASH);
+public class NegateToken extends CharToken implements OperationInterface {
+	public NegateToken() {
+		super(CharConstants.BANG);
 	}
+
 	/**
 	 * @return the orderOP
 	 */
 	public final int getOrderOP() {
-		return 4;
+		return 2;
 	}
+	
+	
 }

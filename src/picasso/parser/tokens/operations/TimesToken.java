@@ -11,4 +11,11 @@ public class TimesToken extends CharToken implements OperationInterface {
 	public TimesToken() {
 		super(CharConstants.STAR);
 	}
+	@Override
+	/**
+	 * @return the orderOP
+	 */
+	public final int getOrderOP() {
+		return 4;
+	}
 }

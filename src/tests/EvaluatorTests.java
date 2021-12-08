@@ -121,14 +121,20 @@ public class EvaluatorTests {
 	}
 
 	@Test
-	public void testCeilEvaluator()
-	{
+	public void testCeilEvaluator() {
 		ExpressionTreeNode e = parser.makeExpression("ceil(x)");
 		Ceil c = new Ceil(e);
 		assertEquals(new RGBColor (-1,-1,-1), c.evaluate(-1, -1));
 		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
 		assertEquals(new RGBColor (1, 1, 1), c.evaluate(1, 1));
-		
+	}
+	@Test
+	public void testNegateEvaluator(){
+		ExpressionTreeNode e = parser.makeExpression("!x");
+		Negation c = new Negation(e);
+		assertEquals(new RGBColor (-1,-1,-1), c.evaluate(-1, -1));
+		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
+		assertEquals(new RGBColor (1,1, 1), c.evaluate(1, 1));
 
 	}
 

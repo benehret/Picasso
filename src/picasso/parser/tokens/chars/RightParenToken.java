@@ -10,5 +10,8 @@ public class RightParenToken extends CharToken {
 	public RightParenToken() {
 		super(CharConstants.RIGHT_PAREN);
 	}
-	
+	@Override
+	public int getType() {
+		return 5;
+	}
 }

@@ -18,13 +18,16 @@ import picasso.parser.tokens.operations.*;
  * @author Sara Sprenkle modified for Picasso
  */
 public class ExpressionTreeGenerator {
-
+/**
 	// TODO: Do these belong here?
 	private static final int CONSTANT = 0;
 	private static final int GROUPING = 1; // parentheses
-	private static final int ADD_OR_SUBTRACT = 2;
-	private static final int MULTIPLY_OR_DIVIDE = 3;
-	private static final int EXPONENTIAL=4;
+	private static final int UNARY = 2;
+	private static final int EXPONENTIAL=3;
+	private static final int MULTIPLY_OR_DIVIDE = 4;
+	private static final int ADD_OR_SUBTRACT = 5;
+	private static final int ASSIGN=6;
+*/
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
@@ -83,16 +86,14 @@ public class ExpressionTreeGenerator {
 
 		while (iter.hasNext()) {
 			Token token = iter.next();
-			if (token instanceof NumberToken) {
+			if (token.getType()==1) {
 				postfixResult.push(token);
-			} else if (token instanceof ColorToken) {
-				postfixResult.push(token);
-			} else if (token instanceof IdentifierToken) {
-				postfixResult.push(token);
-			} else if (token instanceof FunctionToken) {
+			} else if (token.getType()==2) {
 				operators.push(token);
-			} else if (token instanceof OperationInterface) {
-
+			} else if (token.getType()==3) {
+				CharToken charToken= (CharToken) token;
+				
+				
 				/*
 				 * while there is an operator, o2, at the top of the stack (this
 				 * excludes left parenthesis), and either
@@ -104,40 +105,43 @@ public class ExpressionTreeGenerator {
 				 * 
 				 * pop o2 off the stack, onto the output queue;
 				 */
+				while (!operators.isEmpty()) {
+					CharToken charToken2= (CharToken) operators.peek();
+				
 				while (!operators.isEmpty()
-						&& !(operators.peek() instanceof LeftParenToken)
-						&& orderOfOperation(token) <= orderOfOperation(operators
-								.peek())) {
+						&& !(operators.peek().getType()== 4)
+						&& charToken.getOrderOP() <= charToken2
+								.getOrderOP()) {
 					postfixResult.push(operators.pop());
 				}
-
+				}
 				operators.push(token);
 
-			} else if (token instanceof CommaToken) {
+			} else if (token.getType()== 6) {
 				// Until the token at the top of the stack is a left
 				// parenthesis, pop operators off the stack onto the output
 				// queue.
 
 				while (!operators.isEmpty()
-						&& !(operators.peek() instanceof LeftParenToken)) {
+						&& !(operators.peek().getType()== 4)) {
 					postfixResult.push(operators.pop());
 				}
 
 				// If no left parentheses are encountered, either the
 				// separator was misplaced or parentheses were mismatched.
 				if (operators.isEmpty()
-						|| !(operators.peek() instanceof LeftParenToken)) {
+						|| !(operators.peek().getType()== 4)) {
 					throw new ParseException("Parentheses were mismatched.");
 				}
 
-			} else if (token instanceof LeftParenToken) {
+			} else if (token.getType()== 4) {
 				operators.push(token);
-			} else if (token instanceof RightParenToken) {
+			} else if (token.getType()== 5) {
 				// Until the token at the top of the stack is a left
 				// parenthesis, pop operators off the stack onto the output
 				// queue.
 				while (operators.size() > 0
-						&& !(operators.peek() instanceof LeftParenToken)) {
+						&& !(operators.peek().getType()== 4)) {
 					postfixResult.push(operators.pop());
 				}
 
@@ -151,7 +155,7 @@ public class ExpressionTreeGenerator {
 				// If the token at the top of the stack is a function token, pop
 				// it onto the output queue.
 				if (operators.size() > 0
-						&& operators.peek() instanceof FunctionToken) {
+						&& operators.peek().getType()==1) {
 					postfixResult.push(operators.pop());
 				}
 
@@ -179,31 +183,5 @@ public class ExpressionTreeGenerator {
 		return postfixResult;
 	}
 
-	/**
-	 * 
-	 * @param token
-	 * @return
-	 */
-	private int orderOfOperation(Token token) {
-
-		// TODO: Need to finish with other operators.
-
-		// TODO: DISCUSS: Is it better to have a method in the OperatorToken
-		// class that gives the order of operation?
-
-		if (token instanceof PlusToken)
-			return ADD_OR_SUBTRACT;
-		else if (token instanceof MinusToken)
-			return ADD_OR_SUBTRACT;
-		else if (token instanceof TimesToken)
-			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof DivideToken)
-			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof ModToken)
-			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof ExponentiateToken)
-			return EXPONENTIAL;
-		else
-			return CONSTANT;
-	}
+	
 }

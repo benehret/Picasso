@@ -22,7 +22,7 @@ public abstract class Token {
 	public Token(String description) {
 		this.description = description;
 	}
-
+	
 	/**
 	 * Represents the token by its description
 	 * 
@@ -32,7 +32,12 @@ public abstract class Token {
 	public String toString() {
 		return description;
 	}
-
+	/**
+	 * Returns the type of token created represented by numbers
+	 * 
+	 * @return type of token created represented by numbers
+	 */
+	public abstract int getType();
 	/**
 	 * Returns true if this token represents a constant, false otherwise
 	 * 

@@ -30,6 +30,10 @@ public abstract class FunctionToken extends Token {
 	public boolean isFunction() {
 		return true;
 	}
+	@Override
+	public int getType() {
+		return 1;
+	}
 
 	/*
 	 * (non-Javadoc)
