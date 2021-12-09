@@ -93,8 +93,8 @@ public class ImageWrap extends ExpressionTreeNode {
 		double redx = Wrap.wrap(resultx.getRed());
 		double redy = Wrap.wrap(resulty.getRed());
 		//convert redx and redy to BufferedImage scale
-		int xval = domainToImageScale(redx, myImage.getWidth());
-		int yval = domainToImageScale(redy, myImage.getHeight());
+		int xval = domainToImageScale(redx, 2);
+		int yval = domainToImageScale(redy, 2);
 		//use converted values to get RGB value at image coords
 		Color intc = new Color(myImage.getRGB(xval, yval));
 		RGBColor doublec = new RGBColor(intc);
@@ -103,9 +103,15 @@ public class ImageWrap extends ExpressionTreeNode {
 	}
 	//make method that converts from domain to image 
 	public int domainToImageScale(double value, int bounds) {
-		int range = bounds - myImage.getMinX();
-		return (int)(value/bounds)*range + myImage.getMinX();
+		double range = myImage.getWidth();
+		return (int)((value-(-1)*range)/bounds);
 	}
+	/*
+	protected double imageToDomainScale(int value, int bounds) {
+		double range = DOMAIN_MAX - DOMAIN_MIN;
+		return ((double) value / bounds) * range + DOMAIN_MIN;
+	}
+	*/
 	
 	//domain to image method, value is double from x,y in evaluate, bounds is dimension of myImage
 }
