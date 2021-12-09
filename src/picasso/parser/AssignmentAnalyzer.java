@@ -4,6 +4,7 @@ import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Assignment;
+import picasso.parser.language.expressions.Variable;
 import picasso.parser.tokens.Token;
 
 /**
@@ -24,6 +25,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 				tokens);
 
 		// just pop the token out of the token stack instead of evaluating it
+		//Variable variable = (Variable) IdentifierAnalyzer.generateExpressionTree(tokens);
 		String variable = tokens.pop().toString();
 		// substring so that we just get the a part instead of the whole
 		// Variable Token: part

@@ -26,8 +26,8 @@ public class Assignment extends Variable {
 	 */
 	public Assignment(String variable, ExpressionTreeNode expression) {
 		super (variable);
-		this.param = variable;
-		this.param2 = expression;
+//		this.param = variable;
+//		this.param2 = expression;
 		assignment.put(variable, expression);
 
 	}
