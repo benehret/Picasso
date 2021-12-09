@@ -104,7 +104,11 @@ public class ImageWrap extends ExpressionTreeNode {
 	//make method that converts from domain to image 
 	public int domainToImageScale(double value, int bounds) {
 		double range = myImage.getWidth();
-		return (int)((value-(-1)*range)/bounds);
+		System.out.println("VALUE: " + value);
+		// https://stackoverflow.com/questions/50966204/convert-images-from-1-1-to-0-255/50966711
+		int stopgap = (int)(((value + 1) * 255) / 2);
+		System.out.println("STOPGAP: " + stopgap);
+		return stopgap;
 	}
 	/*
 	protected double imageToDomainScale(int value, int bounds) {
