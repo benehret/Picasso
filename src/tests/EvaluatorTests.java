@@ -171,4 +171,17 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(((ImageWrap)e).getMyImage().getWidth()/2, ((ImageWrap)e).getMyImage().getHeight()/2))), e.evaluate(1, 0));
 	}
 	
+	@Test
+	public void testDomainToImageScaleX() {
+		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
+		assertEquals(0,((ImageWrap)e).domainToImageScaleX((double)-1,2));
+		assertEquals(255,((ImageWrap)e).domainToImageScaleX((double)1,2));
+	}
+	
+	@Test
+	public void testDomainToImageScaleY() {
+		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
+		assertEquals(0,((ImageWrap)e).domainToImageScaleY((double)-1,2));
+		assertEquals(255,((ImageWrap)e).domainToImageScaleY((double)1,2));
+	}
 }
