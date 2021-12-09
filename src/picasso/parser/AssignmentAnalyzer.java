@@ -6,6 +6,7 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.Assignment;
 import picasso.parser.language.expressions.Variable;
 import picasso.parser.tokens.Token;
+import picasso.parser.tokens.chars.CharToken;
 import picasso.view.errorReporting.ErrorReporting;
 
 /**
@@ -22,14 +23,14 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		tokens.pop(); // Remove the assignment token
 		// the parameters are the next tokens on the stack.
 		// But, they need to be processed
+		System.out.println("TOKEN: " + tokens);
 		ExpressionTreeNode expression =SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 
 		// just pop the token out of the token stack instead of evaluating it
-		//Variable variable = (Variable) IdentifierAnalyzer.generateExpressionTree(tokens);
 		// TODO Make sure that it's an identifier token if not throw an error
 		Token variable = tokens.pop();
-		if (variable.isConstant() || variable.isFunction())
+		if (variable.isConstant() || variable.isFunction() || variable.toString().equals( "Variable Token: x") || variable.toString().equals( "Variable Token: y"))
 		{
 			IllegalArgumentException e = new IllegalArgumentException("Can't rename preexisting variables/functions.");
 			ErrorReporting.reportException(e);

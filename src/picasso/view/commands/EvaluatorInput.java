@@ -94,7 +94,6 @@ public class EvaluatorInput implements Command<Pixmap> {
 		}
 		// https://stackoverflow.com/questions/3495926/can-i-catch-multiple-java-exceptions-in-the-same-catch-clause
 		catch (ParseException e) {
-			// System.out.println("Crap");
 			ErrorReporting.reportException(e);
 			// How can I do this without having this return statement here?
 			return expTreeGen.makeExpression(input);
