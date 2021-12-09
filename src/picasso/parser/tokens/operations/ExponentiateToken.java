@@ -13,10 +13,12 @@ public class ExponentiateToken extends CharToken implements OperationInterface {
 		
 	}
 
-	/**
-	 * @return the orderOP
-	 */
+	@Override
 	public final int getOrderOP() {
-		return 4;
+		return EXPONENTIAL;
+	}
+	@Override
+	public boolean isRightAssociate() {
+		return RIGHT_ASSOCIATIVE;
 	}
 }

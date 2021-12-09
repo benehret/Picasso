@@ -52,11 +52,7 @@ public class NumberToken extends Token {
 		return super.toString() + ": " + myValue;
 	}
 	
-	@Override
-	public int getType() {
-		return 1;
-	}
-	
+
 	@Override
 	public boolean isConstant() {
 		return true;
