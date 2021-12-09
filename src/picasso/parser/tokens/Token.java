@@ -37,12 +37,7 @@ public abstract class Token {
 	 * 
 	 * @return type of token created represented by numbers
 	 */
-	public abstract int getType();
-	/**
-	 * Returns true if this token represents a constant, false otherwise
-	 * 
-	 * @return true iff this Token represents a constant
-	 */
+	
 	public abstract boolean isConstant();
 
 	/**

@@ -17,6 +17,6 @@ public class ExponentiateToken extends CharToken implements OperationInterface {
 	 * @return the orderOP
 	 */
 	public final int getOrderOP() {
-		return 3;
+		return 4;
 	}
 }
