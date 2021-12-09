@@ -5,6 +5,8 @@ package tests;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.awt.Color;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -159,6 +161,14 @@ public class EvaluatorTests {
 		e = parser.makeExpression("wrap(x+x+x+x)");
 		assertEquals(new RGBColor(0,0,0), e.evaluate(-1, -1));
 		assertEquals(new RGBColor(0,0,0), e.evaluate(1, 1));
+	}
+	
+	@Test
+	public void testImageWrapEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
+		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(0, 0))), e.evaluate(-1, -1));
+		 e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
+		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(0, 0))), e.evaluate(1, 1));
 	}
 	
 }

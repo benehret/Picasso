@@ -25,11 +25,11 @@ public class ImageWrap extends ExpressionTreeNode {
 		this.param = param;
 		this.param2=param2;
 		try {
-			this.myImage = ImageIO.read(new File(image));
+			this.myImage = ImageIO.read(new File("./images/"+image));
 		} catch (IOException e) {
+			e.printStackTrace();
 			throw new ParseException("Image is not valid.");
 		}
-
 	}
 
 	/**
@@ -63,9 +63,6 @@ public class ImageWrap extends ExpressionTreeNode {
 		ImageWrap uf = (ImageWrap) o;
 
 		// check if their parameters are equal
-		if (!this.myImage.equals(uf.myImage)) {
-			return false;
-		}
 		if (!this.param.equals(uf.param)) {
 			return false;
 		}
@@ -73,6 +70,14 @@ public class ImageWrap extends ExpressionTreeNode {
 			return false;
 		}
 		return true;
+	}
+	
+	/**
+	 * for testing purposes
+	 * @return myImage
+	 */
+	public BufferedImage getMyImage() {
+		return myImage;
 	}
 
 	/**
