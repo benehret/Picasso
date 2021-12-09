@@ -4,11 +4,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.BeforeEach;
 
 import picasso.parser.ExpressionTreeGenerator;
 import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.*;
+import picasso.parser.tokens.StringToken;
 import picasso.parser.tokens.operations.*;
 
 /**
@@ -186,5 +189,13 @@ public class ParsedExpressionTreeTests {
 		assertEquals(new Wrap(new Addition(new X(), new Y())), e);
 		e = parser.makeExpression("wrap( x + x )");
 		assertEquals(new Wrap(new Addition(new X(), new X())), e);
+	}
+	
+	@Test
+	public void ImageWrapFunctionTests() throws IOException {
+		ExpressionTreeNode e = parser.makeExpression("imageWrap( \"vortex.jpg\", x,y+y )");
+		assertEquals(new ImageWrap("vortex.jpg",new X(),new Addition(new Y(), new Y())), e);
+		e = parser.makeExpression("imageWrap( \"vortex.jpg\", x+x,y )");
+		assertEquals(new ImageWrap("vortex.jpg",new Addition(new X(), new X()), new Y()), e);
 	}
 }

@@ -214,6 +214,17 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(8));
 	}
 	@Test
+	public void testTokenizeImageWrapFunctionExpression() {
+		String expression = "imageWrap(\"vortex.jpg\", x+x, y)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new ImageWrapToken(), tokens.get(0));
+		assertEquals(new StringToken("vortex.jpg"), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new IdentifierToken("x"), tokens.get(3));
+		assertEquals(new PlusToken(), tokens.get(4));
+		assertEquals(new IdentifierToken("y"), tokens.get(5));	
+	}
+	@Test
 	public void testTokenizeCombinedFunctionExpression() {
 		String expression = "perlinColor(floor(x), y)";
 		List<Token> tokens = tokenizer.parseTokens(expression);
