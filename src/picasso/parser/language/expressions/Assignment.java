@@ -4,6 +4,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import javax.swing.JOptionPane;
+import javax.swing.JFrame;
+
 import picasso.parser.language.ExpressionTreeNode;
 
 /**
@@ -15,6 +18,7 @@ public class Assignment extends Variable {
 	private static Map<String, ExpressionTreeNode> assignment = new HashMap<>();
 	private String param;
 	private ExpressionTreeNode param2;
+	private static JFrame myFrame;
 
 //Enforoce must be an identifier token
 
@@ -28,6 +32,7 @@ public class Assignment extends Variable {
 		super (variable);
 //		this.param = variable;
 //		this.param2 = expression;
+		JOptionPane.showMessageDialog(myFrame, "Assignment saved!");
 		assignment.put(variable, expression);
 
 	}

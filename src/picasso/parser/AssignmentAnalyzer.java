@@ -8,7 +8,7 @@ import picasso.parser.language.expressions.Variable;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the plus or "addition function".
+ * Handles parsing the equals or "assignment function".
  * 
  * @author Robert C. Duvall
  * @author Sara Sprenkle
