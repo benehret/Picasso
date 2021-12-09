@@ -21,10 +21,7 @@ public class EOFToken extends Token {
 		}
 		return ourInstance;
 	}
-	@Override
-	public int getType() {
-		return 10;
-	}
+	
 	private EOFToken() {
 		super("End of File");
 	}

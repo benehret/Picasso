@@ -44,8 +44,4 @@ public class IdentifierToken extends Token {
 	public boolean isFunction() {
 		return false;
 	}
-	@Override
-	public int getType() {
-		return 1;
-	}
 }

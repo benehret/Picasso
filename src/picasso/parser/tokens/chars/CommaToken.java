@@ -13,9 +13,5 @@ public class CommaToken extends CharToken {
 	public CommaToken() {
 		super(CharConstants.COMMA);
 	}
-	@Override
-	public int getType() {
-		return 6;
-	}
 
 }

@@ -19,12 +19,7 @@ import picasso.parser.tokens.operations.*;
  */
 public class ExpressionTreeGenerator {
 
-	// TODO: Do these belong here?
-	private static final int CONSTANT = 0;
-	private static final int GROUPING = 1; // parentheses
-	private static final int ADD_OR_SUBTRACT = 2;
-	private static final int MULTIPLY_OR_DIVIDE = 3;
-	private static final int EXPONENTIAL=4;
+
 
 	/**
 	 * Converts the given string into expression tree for easier manipulation.
@@ -78,8 +73,7 @@ public class ExpressionTreeGenerator {
 
 		Iterator<Token> iter = tokens.iterator();
 
-		// TO DISCUSS: Is this the correct way to design this code?
-		// What is the code smell? What is the alternative?
+
 
 		while (iter.hasNext()) {
 			Token token = iter.next();
@@ -106,11 +100,14 @@ public class ExpressionTreeGenerator {
 				 * 
 				 * pop o2 off the stack, onto the output queue;
 				 */
-				while (!operators.isEmpty()
-						&& !(operators.peek() instanceof LeftParenToken)
-						&& orderOfOperation(token) <= orderOfOperation(operators
-								.peek())) {
-					postfixResult.push(operators.pop());
+				while (!operators.isEmpty() && !(operators.peek() instanceof LeftParenToken)) {
+					
+					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) <= orderOfOperation(operators
+							.peek())){
+						postfixResult.push(operators.pop());
+					} else if(isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
+							.peek()))
+						postfixResult.push(operators.pop());
 				}
 
 				operators.push(token);
@@ -180,32 +177,25 @@ public class ExpressionTreeGenerator {
 		// System.out.println(postfixResult);
 		return postfixResult;
 	}
-
 	/**
 	 * 
 	 * @param token
-	 * @return
+	 * @return if the token is right associative
+	 */
+	private boolean  isRightAssociative(Token token) {
+		OperationInterface opToken=(OperationInterface) token;
+		return opToken.isRightAssociate();
+
+	}
+	
+	/**
+	 * 
+	 * @param token
+	 * @return the precedence of the token
 	 */
 	private int orderOfOperation(Token token) {
+		OperationInterface opToken=(OperationInterface) token;
+		return opToken.getOrderOP();
 
-		// TODO: Need to finish with other operators.
-
-		// TODO: DISCUSS: Is it better to have a method in the OperatorToken
-		// class that gives the order of operation?
-
-		if (token instanceof PlusToken)
-			return ADD_OR_SUBTRACT;
-		else if (token instanceof MinusToken)
-			return ADD_OR_SUBTRACT;
-		else if (token instanceof TimesToken)
-			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof DivideToken)
-			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof ModToken)
-			return MULTIPLY_OR_DIVIDE;
-		else if (token instanceof ExponentiateToken)
-			return EXPONENTIAL;
-		else
-			return CONSTANT;
 	}
 }

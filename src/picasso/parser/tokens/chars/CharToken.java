@@ -42,16 +42,7 @@ public class CharToken extends Token {
 		CharToken other = (CharToken) o;
 		return myValue == other.myValue;
 	}
-	/**
-	 * @return the orderOP
-	 */
-	public int getOrderOP() {
-		return 0;
-	}
-	@Override
-	public int getType() {
-		return 3;
-	}
+	
 	/**
 	 * @return the encapsulated value
 	 */

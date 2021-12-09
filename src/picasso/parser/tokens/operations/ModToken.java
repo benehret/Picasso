@@ -12,10 +12,12 @@ public class ModToken extends CharToken implements OperationInterface {
 		super(CharConstants.MOD);
 	}
 	@Override
-	/**
-	 * @return the orderOP
-	 */
 	public final int getOrderOP() {
-		return 3;
+		return MULTIPLY_OR_DIVIDE;
+	}
+	@Override
+	public boolean isRightAssociate() {
+	
+		return LEFT_ASSOCIATIVE;
 	}
 }

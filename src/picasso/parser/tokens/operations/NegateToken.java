@@ -12,11 +12,13 @@ public class NegateToken extends CharToken implements OperationInterface {
 		super(CharConstants.BANG);
 	}
 
-	/**
-	 * @return the orderOP
-	 */
+	@Override
 	public final int getOrderOP() {
-		return 5;
+		return UNARY;
+	}
+	@Override
+	public boolean isRightAssociate() {
+		return LEFT_ASSOCIATIVE;
 	}
 	
 	
