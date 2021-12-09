@@ -1,13 +1,13 @@
 package picasso.parser.language.expressions;
 
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import javax.swing.JOptionPane;
 import javax.swing.JFrame;
 
 import picasso.parser.language.ExpressionTreeNode;
+import picasso.parser.IdentifierAnalyzer;
 
 /**
  * Represents the Assignment operator in the Picasso language.
@@ -15,7 +15,6 @@ import picasso.parser.language.ExpressionTreeNode;
  * @author John Adekola
  */
 public class Assignment extends Variable {
-	private static Map<String, ExpressionTreeNode> assignment = new HashMap<>();
 	private String param;
 	private ExpressionTreeNode param2;
 	private static JFrame myFrame;
@@ -33,7 +32,7 @@ public class Assignment extends Variable {
 //		this.param = variable;
 //		this.param2 = expression;
 		JOptionPane.showMessageDialog(myFrame, "Assignment saved!");
-		assignment.put(variable, expression);
+		IdentifierAnalyzer.getMap().put(variable, expression);
 
 	}
 	
@@ -72,8 +71,4 @@ public class Assignment extends Variable {
 		return param2.equals(f.param2);
 	}
 
-	public static Map<String, ExpressionTreeNode> getHashMap()
-	{
-		return assignment;
-	}
 }

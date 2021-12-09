@@ -16,6 +16,7 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.util.Command;
 import picasso.view.errorReporting.ErrorReporting;
 import picasso.parser.language.expressions.Assignment;
+import picasso.parser.IdentifierAnalyzer;
 
 /**
  * Evaluate an expression using userinput for each pixel in a image.
@@ -78,11 +79,11 @@ public class EvaluatorInput implements Command<Pixmap> {
 		String input = myTextField.getText();
 		
 		// check if the input we got is in the dictionary
-		for (String key : Assignment.getHashMap().keySet()) {
+		for (String key : IdentifierAnalyzer.getMap().keySet()) {
 			// https://www.geeksforgeeks.org/compare-two-strings-in-java/#:~:text=Using%20String.,match%2C%20then%20it%20returns%20false.
 			// If it's in the dictionary, return the value (Which is an ExpressionTreeNode)
 			if (input.equals(key)) {
-				return Assignment.getHashMap().get(key);
+				return IdentifierAnalyzer.getMap().get(key);
 			}
 			
 		}
