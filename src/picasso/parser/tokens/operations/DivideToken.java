@@ -15,6 +15,6 @@ public class DivideToken extends CharToken implements OperationInterface {
 	 * @return the orderOP
 	 */
 	public final int getOrderOP() {
-		return 4;
+		return MULTIPLY_OR_DIVIDE;
 	}
 }

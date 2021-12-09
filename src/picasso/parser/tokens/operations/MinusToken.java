@@ -16,6 +16,6 @@ public class MinusToken extends CharToken implements OperationInterface {
 	 * @return the orderOP
 	 */
 	public final int getOrderOP() {
-		return 5;
+		return 2;
 	}
 }

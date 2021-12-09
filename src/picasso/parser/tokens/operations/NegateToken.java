@@ -16,7 +16,7 @@ public class NegateToken extends CharToken implements OperationInterface {
 	 * @return the orderOP
 	 */
 	public final int getOrderOP() {
-		return 2;
+		return 5;
 	}
 	
 	
