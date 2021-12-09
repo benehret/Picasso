@@ -166,9 +166,9 @@ public class EvaluatorTests {
 	@Test
 	public void testImageWrapEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
-		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(0, 0))), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(((ImageWrap)e).getMyImage().getWidth()/2, ((ImageWrap)e).getMyImage().getHeight()/2))), e.evaluate(-1, 0));
 		 e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
-		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(0, 0))), e.evaluate(1, 1));
+		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(((ImageWrap)e).getMyImage().getWidth()/2, ((ImageWrap)e).getMyImage().getHeight()/2))), e.evaluate(1, 0));
 	}
 	
 }
