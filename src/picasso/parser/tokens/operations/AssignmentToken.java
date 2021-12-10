@@ -14,11 +14,11 @@ public class AssignmentToken extends CharToken implements OperationInterface {
 
 	@Override
 	public int getOrderOP() {
-		return 0;
+		return ASSIGN;
 	}
 
 	@Override
 	public boolean isRightAssociate() {
-		return true;
+		return RIGHT_ASSOCIATIVE;
 	}
 }
