@@ -14,13 +14,15 @@ public class AssignmentToken extends CharToken implements OperationInterface {
 
 	@Override
 	public int getOrderOP() {
+
 		// TODO Auto-generated method stub
-		return 0;
+
+		return ASSIGN;
 	}
 
 	@Override
 	public boolean isRightAssociate() {
 		// TODO Auto-generated method stub
-		return true;
+		return RIGHT_ASSOCIATIVE;
 	}
 }
