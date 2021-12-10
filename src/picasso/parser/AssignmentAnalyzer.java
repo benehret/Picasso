@@ -23,7 +23,6 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		tokens.pop(); // Remove the assignment token
 		// the parameters are the next tokens on the stack.
 		// But, they need to be processed
-		System.out.println("TOKEN: " + tokens);
 		ExpressionTreeNode expression =SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 
