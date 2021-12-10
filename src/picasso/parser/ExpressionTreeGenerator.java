@@ -112,10 +112,12 @@ public class ExpressionTreeGenerator {
 							.peek())){
 						postfixResult.push(operators.pop());
 					} else if(isRightAssociative(token) && orderOfOperation(token) < orderOfOperation(operators
+							.peek())) {
+						postfixResult.push(operators.pop());
+					}else if(isRightAssociative(token) &&  orderOfOperation(token) == orderOfOperation(operators
 							.peek()))
 						postfixResult.push(operators.pop());
 				}
-
 				operators.push(token);
 
 			} else if (token instanceof CommaToken) {
