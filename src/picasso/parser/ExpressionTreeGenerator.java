@@ -102,10 +102,10 @@ public class ExpressionTreeGenerator {
 				 */
 				while (!operators.isEmpty() && !(operators.peek() instanceof LeftParenToken)) {
 					
-					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) <= orderOfOperation(operators
+					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
 							.peek())){
 						postfixResult.push(operators.pop());
-					} else if(isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
+					} else if(isRightAssociative(operators.peek()) && orderOfOperation(token) <= orderOfOperation(operators
 							.peek()))
 						postfixResult.push(operators.pop());
 				}
