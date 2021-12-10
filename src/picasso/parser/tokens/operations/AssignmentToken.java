@@ -19,7 +19,6 @@ public class AssignmentToken extends CharToken implements OperationInterface {
 
 	@Override
 	public boolean isRightAssociate() {
-		// TODO Auto-generated method stub
-		return false;
+		return true;
 	}
 }
