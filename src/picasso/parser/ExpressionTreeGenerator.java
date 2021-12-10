@@ -100,12 +100,28 @@ public class ExpressionTreeGenerator {
 				 * 
 				 * pop o2 off the stack, onto the output queue;
 				 */
-				while (!operators.isEmpty() && !(operators.peek() instanceof LeftParenToken)) {
+				/**while (!operators.isEmpty() && !(operators.peek() instanceof LeftParenToken)) {
 					
-					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) <= orderOfOperation(operators
+					System.out.println(operators.peek() + "vs" + token);
+					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
 							.peek())){
 						postfixResult.push(operators.pop());
-					} else if(isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
+					} else if(isRightAssociative(operators.peek()) && orderOfOperation(token) <= orderOfOperation(operators
+							.peek()))
+						postfixResult.push(operators.pop());
+					
+					
+	
+				}*/
+
+				while (!operators.isEmpty()
+						&& !(operators.peek() instanceof LeftParenToken)
+						&& orderOfOperation(token) <= orderOfOperation(operators
+								.peek())) {
+					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
+							.peek())){
+						postfixResult.push(operators.pop());
+					} else if(isRightAssociative(operators.peek()) && orderOfOperation(token) <= orderOfOperation(operators
 							.peek()))
 						postfixResult.push(operators.pop());
 				}

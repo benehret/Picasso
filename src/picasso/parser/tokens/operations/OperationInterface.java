@@ -13,7 +13,7 @@ public interface OperationInterface {
 	static final int EXPONENTIAL=3;
 	 static final int MULTIPLY_OR_DIVIDE = 2;
 	static final int ADD_OR_SUBTRACT = 1;
-	 static final int ASSIGN=0;
+	 static final int ASSIGN = 0;
 	 static final boolean RIGHT_ASSOCIATIVE= true;
 	 static final boolean LEFT_ASSOCIATIVE= false;
 	
