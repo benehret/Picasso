@@ -37,6 +37,7 @@ public class ErrorParsedEvaluatedTests {
 			parser.makeExpression("-a");
 		});
 	}
+	
 
 	@Test
 	public void errorTooFewArgsTest() {

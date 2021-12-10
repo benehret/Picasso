@@ -14,9 +14,6 @@ public class AssignmentToken extends CharToken implements OperationInterface {
 
 	@Override
 	public int getOrderOP() {
-
-		// TODO Auto-generated method stub
-
 		return ASSIGN;
 	}
 

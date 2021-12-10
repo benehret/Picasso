@@ -100,8 +100,14 @@ public class ExpressionTreeGenerator {
 				 * 
 				 * pop o2 off the stack, onto the output queue;
 				 */
-				while (!operators.isEmpty() && !(operators.peek() instanceof LeftParenToken)) {
-					
+				/**while (!operators.isEmpty() && !(operators.peek() instanceof LeftParenToken)) {
+	
+				}*/
+
+				while (!operators.isEmpty()
+						&& !(operators.peek() instanceof LeftParenToken)
+						&& orderOfOperation(token) <= orderOfOperation(operators
+								.peek())) {
 					if (!isRightAssociative(operators.peek()) && orderOfOperation(token) >= orderOfOperation(operators
 							.peek())){
 						postfixResult.push(operators.pop());
