@@ -130,6 +130,14 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
 		assertEquals(new RGBColor (1, 1, 1), c.evaluate(1, 1));
 	}
+	
+	@Test
+	public void testAssignmentEvaluator() {
+		ExpressionTreeNode e = parser.makeExpression("a = x + y");
+		assertEquals(new RGBColor(1,1,1),e.evaluate(1, 0));
+		assertEquals(new RGBColor(1,1,1),e.evaluate(0, 0));
+		
+	}	
 	@Test
 	public void testNegateEvaluator(){
 		ExpressionTreeNode e = parser.makeExpression("!x");

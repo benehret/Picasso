@@ -55,6 +55,8 @@ public class Evaluater implements Command<Pixmap> {
 
 		//String test = "floor(y)";
 		String test = "x + y";
+<
+
 
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		return expTreeGen.makeExpression(test);
