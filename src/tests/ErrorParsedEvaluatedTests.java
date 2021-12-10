@@ -34,7 +34,7 @@ public class ErrorParsedEvaluatedTests {
 	@Test
 	public void errorUnrecognizedInputTest() {
 		assertThrows(ParseException.class, () -> {
-			parser.makeExpression("a");
+			parser.makeExpression("-a");
 		});
 	}
 	

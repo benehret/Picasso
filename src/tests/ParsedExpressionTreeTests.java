@@ -62,6 +62,7 @@ public class ParsedExpressionTreeTests {
 		ExpressionTreeNode e1 = parser.makeExpression("a = x + y");
 		assertEquals(new Assignment("a", new Addition(new X(), new Y())), e1);
 	}*/
+
 		/**
 		// no spaces!
 		ExpressionTreeNode e = parser.makeExpression("a=y+x");
@@ -163,6 +164,13 @@ public class ParsedExpressionTreeTests {
 
 		e = parser.makeExpression("( x + (y + [ 1, 1, 1] ) )");
 		assertEquals(new Addition(new X(), new Addition(new Y(), new RGBColor(1, 1, 1))), e);
+	}
+	
+	@Test
+	public void orderOfOperationsTests()
+	{
+		ExpressionTreeNode e = parser.makeExpression("x + y / x");
+		assertEquals(new Addition(new X(), new Division(new Y(), new X())), e);
 	}
 
 	@Test

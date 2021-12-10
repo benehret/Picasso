@@ -24,7 +24,9 @@ public class ImageWrapAnalyzer implements SemanticAnalyzerInterface {
 				tokens);
 		ExpressionTreeNode param2=SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-
+		if (!(tokens.peek() instanceof StringToken)) {
+			throw new ParseException("Input for image is not valid.");
+		}
 		StringToken image = (StringToken)tokens.pop();
 		String imagename = image.getValue();
 		return new ImageWrap(imagename,param2,param1);
