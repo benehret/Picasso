@@ -29,10 +29,11 @@ public class Assignment extends Variable {
 	 */
 	public Assignment(String variable, ExpressionTreeNode expression) {
 		super (variable);
-		this.param = variable;
-		this.param2 = expression;
+//		this.param = variable;
+//		this.param2 = expression;
 		JOptionPane.showMessageDialog(myFrame, "Assignment saved!");
 		IdentifierAnalyzer.getMap().put(variable, expression);
+		System.out.println(IdentifierAnalyzer.getMap());
 
 	}
 	

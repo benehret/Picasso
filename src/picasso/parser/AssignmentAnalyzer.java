@@ -24,7 +24,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 		// the parameters are the next tokens on the stack.
 		// But, they need to be processed
 		ExpressionTreeNode expression =SemanticAnalyzer.getInstance().generateExpressionTree(
-				tokens);
+				tokens);	
 
 		// just pop the token out of the token stack instead of evaluating it
 		// TODO Make sure that it's an identifier token if not throw an error
@@ -40,6 +40,7 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 			// substring so that we just get the a part instead of the whole
 			// Variable Token: part
 			assignedVariable = assignedVariable.substring(assignedVariable.length() - 1);
+			System.out.println(expression);
 
 			return new Assignment(assignedVariable, expression);
 		}
