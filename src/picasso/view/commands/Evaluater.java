@@ -54,6 +54,7 @@ public class Evaluater implements Command<Pixmap> {
 		// objects directly (as in the commented statement below).
 
 		//String test = "floor(y)";
+		String test = "x + y";
 		String test = "(x+y)*y";
 
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();

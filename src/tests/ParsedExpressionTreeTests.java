@@ -58,6 +58,22 @@ public class ParsedExpressionTreeTests {
 		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
 	}
 	@Test
+	public void AssignmentExpressionTests() {
+		ExpressionTreeNode e1 = parser.makeExpression("a = x + y");
+		assertEquals(new Assignment("a", new Addition(new X(), new Y())), e1);
+	}
+		/**
+		// no spaces!
+		ExpressionTreeNode e = parser.makeExpression("a=y+x");
+		assertEquals(new Addition(new Y(), new X()), e);
+
+		e = parser.makeExpression("[1,.3,-1] + a");
+		assertEquals(new Addition(new RGBColor(1, .3, -1), e);
+
+		e = parser.makeExpression("x + y + [ -.51, 0, 1]");
+		assertEquals(new Addition(new Addition(new X(), new Y()), new RGBColor(-.51, 0, 1)), e);
+        */
+	@Test
 	public void SubstractionExpressionTests() {
 		ExpressionTreeNode e1 = parser.makeExpression("x - y");
 		assertEquals(new Substraction(new X(), new Y()), e1);

@@ -39,5 +39,22 @@ public class IdentifierAnalyzer implements SemanticAnalyzerInterface {
 		// Is that an error? Or, could there a valid reason?
 		return null;
 	}
+	
+	// TODO make a method to access map, but not change x and y
+	static public Map<String, ExpressionTreeNode> getMap()
+	{
+		return idToExpression;
+	}
+	
+	/*
+	 * Method to get a value given a key
+	 * @param A string key
+	 * @return an expressionTreeNode
+	 */
+	static public ExpressionTreeNode getValueFromKey(String key)
+	{
+		return idToExpression.get(key);
+	}
 
 }
+//use it to extract
