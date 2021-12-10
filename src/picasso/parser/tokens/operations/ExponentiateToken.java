@@ -10,5 +10,15 @@ import picasso.parser.tokens.chars.CharToken;
 public class ExponentiateToken extends CharToken implements OperationInterface {
 	public ExponentiateToken() {
 		super(CharConstants.CARET);
+		
+	}
+
+	@Override
+	public final int getOrderOP() {
+		return EXPONENTIAL;
+	}
+	@Override
+	public boolean isRightAssociate() {
+		return RIGHT_ASSOCIATIVE;
 	}
 }

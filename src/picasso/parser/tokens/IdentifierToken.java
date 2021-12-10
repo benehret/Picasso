@@ -44,5 +44,4 @@ public class IdentifierToken extends Token {
 	public boolean isFunction() {
 		return false;
 	}
-
 }

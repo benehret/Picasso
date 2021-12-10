@@ -84,7 +84,8 @@ public class ColorToken extends Token {
 	public double getGreen() {
 		return green;
 	}
-
+	
+	
 	/**
 	 * @return the blue
 	 */

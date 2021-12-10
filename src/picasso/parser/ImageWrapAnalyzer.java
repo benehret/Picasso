@@ -3,28 +3,31 @@ package picasso.parser;
 import java.util.Stack;
 
 import picasso.parser.language.ExpressionTreeNode;
-import picasso.parser.language.expressions.Division;
+import picasso.parser.language.expressions.ImageWrap;
+import picasso.parser.tokens.StringToken;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing for the division function
+ * Handles parsing the  for the multiplication function
  * 
  * @author Robert C. Duvall
  * @author Sara Sprenkle
  * 
  */
-public class DivideAnalyzer implements SemanticAnalyzerInterface {
+public class ImageWrapAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
-		tokens.pop(); // Remove divide  token
+		tokens.pop(); // Remove imageWrap  token
 		// the parameters are the next tokens on the stack.
 		ExpressionTreeNode param1=SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
 		ExpressionTreeNode param2=SemanticAnalyzer.getInstance().generateExpressionTree(
 				tokens);
-				
-		return new Division(param2,param1);
+
+		StringToken image = (StringToken)tokens.pop();
+		String imagename = image.getValue();
+		return new ImageWrap(imagename,param2,param1);
 	}
 
 }

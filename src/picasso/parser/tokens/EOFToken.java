@@ -21,7 +21,7 @@ public class EOFToken extends Token {
 		}
 		return ourInstance;
 	}
-
+	
 	private EOFToken() {
 		super("End of File");
 	}

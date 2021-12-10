@@ -42,7 +42,7 @@ public class CharToken extends Token {
 		CharToken other = (CharToken) o;
 		return myValue == other.myValue;
 	}
-
+	
 	/**
 	 * @return the encapsulated value
 	 */

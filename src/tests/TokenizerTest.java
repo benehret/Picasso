@@ -111,6 +111,14 @@ public class TokenizerTest {
 	}
 
 	@Test
+	public void testTokenizeNegateOperatorExpression() {
+		String expression = "!x";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new NegateToken(), tokens.get(0));
+		assertEquals(new IdentifierToken("x"), tokens.get(1));
+
+	}
+	@Test
 	public void testTokenizeCeilFunctionExpression() {
 		String expression = "ceil(x)";
 		tokens = tokenizer.parseTokens(expression);
@@ -119,6 +127,18 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new RightParenToken(), tokens.get(3));
 	}
+
+	
+	@Test
+	public void testTokenizeWrapFunctionExpression() {
+		String expression = "wrap(x)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new WrapToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("x"), tokens.get(2));
+		assertEquals(new RightParenToken(), tokens.get(3));
+	}
+
 
 	@Test
 	public void testTokenizeMinusOperatorExpression() {
@@ -147,6 +167,40 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("x"), tokens.get(2));
 		assertEquals(new PlusToken(), tokens.get(3));
 		assertEquals(new IdentifierToken("y"), tokens.get(4));
+    
+	public void testTokenizeExponentiateOperatorExpression() {
+		String expression = "x^y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ExponentiateToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeModOperatorExpression() {
+		String expression = "x%y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ModToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeTimesOperatorExpression() {
+		String expression = "x*y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new TimesToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+
+	}
+	@Test
+	public void testTokenizeDivideOperatorExpression() {
+		String expression = "x/y";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new DivideToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
 
 	}
 	@Test
@@ -162,6 +216,35 @@ public class TokenizerTest {
 		assertEquals(new IdentifierToken("y"), tokens.get(6));
 		assertEquals(new MinusToken(), tokens.get(7));
 		assertEquals(new IdentifierToken("x"), tokens.get(8));
+	}
+	@Test
+	public void testTokenizeCombinedOperatorV2Expression() {
+		String expression = "x%y/y*y^x";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new IdentifierToken("x"), tokens.get(0));
+		assertEquals(new ModToken(), tokens.get(1));
+		assertEquals(new IdentifierToken("y"), tokens.get(2));
+		assertEquals(new DivideToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("y"), tokens.get(4));
+		assertEquals(new TimesToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("y"), tokens.get(6));
+		assertEquals(new ExponentiateToken(), tokens.get(7));
+		assertEquals(new IdentifierToken("x"), tokens.get(8));
+	}
+	@Test
+	public void testTokenizeImageWrapFunctionExpression() {
+		String expression = "imageWrap(\"vortex.jpg\", x+x, y)";
+		tokens = tokenizer.parseTokens(expression);
+		assertEquals(new ImageWrapToken(), tokens.get(0));
+		assertEquals(new LeftParenToken(), tokens.get(1));
+		assertEquals(new StringToken("vortex.jpg"), tokens.get(2));
+		assertEquals(new CommaToken(), tokens.get(3));
+		assertEquals(new IdentifierToken("x"), tokens.get(4));
+		assertEquals(new PlusToken(), tokens.get(5));
+		assertEquals(new IdentifierToken("x"), tokens.get(6));
+		assertEquals(new CommaToken(), tokens.get(7));
+		assertEquals(new IdentifierToken("y"), tokens.get(8));
+		assertEquals(new RightParenToken(), tokens.get(9));
 	}
 	@Test
 	public void testTokenizeCombinedFunctionExpression() {

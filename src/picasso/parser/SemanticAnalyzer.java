@@ -134,8 +134,11 @@ public class SemanticAnalyzer implements SemanticAnalyzerInterface {
 
 		for (Object op : opProps.keySet()) {
 			String opName = (String) opProps.get(op);
+			//System.out.println(opName);
 			String tokenName = OPERATIONS_TOKENS_PACKAGE + opName + "Token";
+			//System.out.println(tokenName);
 			String parserName = PARSER_PACKAGE + opName + "Analyzer";
+			//System.out.println(parserName);
 			addSemanticAnalyzerMapping(tokenName, parserName);
 		}
 	}

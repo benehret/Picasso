@@ -11,4 +11,13 @@ public class TimesToken extends CharToken implements OperationInterface {
 	public TimesToken() {
 		super(CharConstants.STAR);
 	}
+	@Override
+	public final int getOrderOP() {
+		return MULTIPLY_OR_DIVIDE;
+	}
+	@Override
+	public boolean isRightAssociate() {
+	
+		return LEFT_ASSOCIATIVE;
+	}
 }

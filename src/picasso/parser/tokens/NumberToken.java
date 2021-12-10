@@ -47,10 +47,11 @@ public class NumberToken extends Token {
 	public double value() {
 		return myValue;
 	}
-
+	
 	public String toString() {
 		return super.toString() + ": " + myValue;
 	}
+	
 
 	@Override
 	public boolean isConstant() {
