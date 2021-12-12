@@ -84,7 +84,7 @@ public class EvaluatorInput implements Command<Pixmap> {
 		
 		history.add(input);
 		// Increment the historyPosition by 1 so we're at the end
-		historyPosition = history.size() - 1;
+		historyPosition = history.size() - 2;
 		historyPosition++;
 		
 		// check if the input we got is in the dictionary

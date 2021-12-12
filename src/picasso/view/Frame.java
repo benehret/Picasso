@@ -57,7 +57,6 @@ public class Frame extends JFrame {
 			public void keyPressed(KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_UP)
 				{
-					System.out.println("PRESSING UP");
 					EvaluatorInput.historyPosition--;
 					try {
 						textField.setText(EvaluatorInput.history.get(EvaluatorInput.historyPosition));
@@ -72,7 +71,6 @@ public class Frame extends JFrame {
 				
 				if (e.getKeyCode() == KeyEvent.VK_DOWN)
 				{
-					System.out.println("PRESSING DOWN");
 					EvaluatorInput.historyPosition++;
 					try {
 						textField.setText(EvaluatorInput.history.get(EvaluatorInput.historyPosition));
