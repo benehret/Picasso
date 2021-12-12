@@ -2,6 +2,8 @@ package picasso.view.commands;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -30,6 +32,7 @@ public class EvaluatorInput implements Command<Pixmap> {
 	public static final double DOMAIN_MAX = 1;
 	private JTextField myTextField;
 	private ExpressionTreeNode expr;
+	public static List<String> history = new ArrayList<String>(); 
 
 	public EvaluatorInput(JTextField field) {
 		myTextField = field;
@@ -77,6 +80,9 @@ public class EvaluatorInput implements Command<Pixmap> {
 
 		// String input = whatever we get form the JTExtBox
 		String input = myTextField.getText();
+		
+		history.add(input);
+		System.out.println("HISTORY: " + history);
 		
 		// check if the input we got is in the dictionary
 		for (String key : IdentifierAnalyzer.getMap().keySet()) {
