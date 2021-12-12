@@ -21,7 +21,6 @@ public class AssignmentAnalyzer implements SemanticAnalyzerInterface {
 
 	@Override
 	public ExpressionTreeNode generateExpressionTree(Stack<Token> tokens) {
-		System.out.println("TOKENS B4 POP: " + tokens);
 		tokens.pop(); // Remove the assignment token
 		// the parameters are the next tokens on the stack.
 		// But, they need to be processed

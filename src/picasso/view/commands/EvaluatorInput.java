@@ -2,6 +2,8 @@ package picasso.view.commands;
 
 import java.awt.Color;
 import java.awt.Dimension;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Hashtable;
@@ -30,6 +32,8 @@ public class EvaluatorInput implements Command<Pixmap> {
 	public static final double DOMAIN_MAX = 1;
 	private JTextField myTextField;
 	private ExpressionTreeNode expr;
+	public static List<String> history = new ArrayList<String>(); 
+	public static int historyPosition = 0;
 
 	public EvaluatorInput(JTextField field) {
 		myTextField = field;
@@ -78,9 +82,15 @@ public class EvaluatorInput implements Command<Pixmap> {
 		// String input = whatever we get form the JTExtBox
 		String input = myTextField.getText();
 		
+		history.add(input);
+		// Increment the historyPosition by 1 so we're at the end
+		historyPosition = history.size() - 2;
+		historyPosition++;
+		
 		// check if the input we got is in the dictionary
 		for (String key : IdentifierAnalyzer.getMap().keySet()) {
-			// https://www.geeksforgeeks.org/compare-two-strings-in-java/#:~:text=Using%20String.,match%2C%20then%20it%20returns%20false.
+			// https://www.geeksfor					EvaluatorInput.history.get(EvaluatorInput.historyPosition - 1);
+			// geeks.org/compare-two-strings-in-java/#:~:text=Using%20String.,match%2C%20then%20it%20returns%20false.
 			// If it's in the dictionary, return the value (Which is an ExpressionTreeNode)
 			if (input.equals(key)) {
 				return IdentifierAnalyzer.getMap().get(key);
