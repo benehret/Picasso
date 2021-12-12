@@ -147,6 +147,63 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor (1,1, 1), c.evaluate(1, 1));
 
 	}
+	@Test
+	public void testrgbToYCrCbEvaluator(){
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb(x)");
+		RGBColor f= e.evaluate(0, 0);
+		assertEquals(new RGBColor (0, 0, 0), f.evaluate(0, 0));
+		RGBColor g= e.evaluate(1, 1);
+		assertEquals(new RGBColor (1.0, 9.999999999998899E-5,9.999999999998899E-5), g.evaluate(1,1));
+	}
+	@Test
+	public void testyCrCbtoRGBEvaluator(){
+		ExpressionTreeNode e = parser.makeExpression("yCrCbtoRGB(x)");
+		RGBColor f= e.evaluate(0, 0);
+		assertEquals(new RGBColor (0, 0, 0), f.evaluate(0, 0));
+		RGBColor g= e.evaluate(1, 1);
+		assertEquals(new RGBColor (2.4021999999999997, -0.06010000000000004, 2.771), g.evaluate(1, 1));
+	
+	}
+	@Test
+	public void testPerlinColorEvaluator(){
+		ExpressionTreeNode e = parser.makeExpression("perlinColor(x,y)");
+		RGBColor f= e.evaluate(0, 0);
+	
+		assertEquals(new RGBColor (0.02276399999999995, -0.24566505471999994, 0.083736), f.evaluate(0, 0));
+		RGBColor g= e.evaluate(1, 1); 
+	
+		assertEquals(new RGBColor (0.45749417280000004,0.09574400000000001 , 0.19672254720000015), g.evaluate(1, 1));
+	
+	}
+	@Test
+	public void testPerlinBWEvaluator(){
+		ExpressionTreeNode e = parser.makeExpression("perlinBW(x,y)");
+		RGBColor f= e.evaluate(0, 0);
+		
+		assertEquals(new RGBColor (0, 0, 0), f.evaluate(0, 0));
+		RGBColor g= e.evaluate(1, 1); 
+	
+		assertEquals(new RGBColor  (0, 0, 0), g.evaluate(1, 1));
+	
+	}
+	@Test
+	public void testRandomEvaluator(){
+		ExpressionTreeNode e = parser.makeExpression("random");
+		boolean result=true;
+		RGBColor f=e.evaluate(0, 0);
+		if (f.getRed()>1||f.getBlue()>1||f.getGreen()>1||f.getBlue()<-1||f.getGreen()<-1||f.getRed()<-1) {
+			result=false;
+		}
+		RGBColor g=e.evaluate(1, 1);
+		if (g.getRed()>1||g.getBlue()>1||g.getGreen()>1||g.getBlue()<-1||g.getGreen()<-1||g.getRed()<-1) {
+			result=false;
+		}
+		RGBColor h=e.evaluate(-1,-1);
+		if (h.getRed()>1||h.getBlue()>1||h.getGreen()>1||h.getBlue()<-1||h.getGreen()<-1||h.getRed()<-1) {
+			result=false;
+		}
+		assertTrue(result);
+	}
 
 	@Test
 	public void testTanXEvaluation() {
@@ -216,19 +273,39 @@ public class EvaluatorTests {
 		 e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
 		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(((ImageWrap)e).getMyImage().getWidth()/2, ((ImageWrap)e).getMyImage().getHeight()/2))), e.evaluate(1, 0));
 	}
-	
+	//image clip not working
 	@Test
-	public void testDomainToImageScaleX() {
+	public void testImageClipEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
+		assertEquals(new RGBColor(new Color(((ImageClip)e).getMyImage().getRGB(((ImageClip)e).getMyImage().getWidth()/2, ((ImageClip)e).getMyImage().getHeight()/2))), e.evaluate(-1, 0));
+		 e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
+		assertEquals(new RGBColor(new Color(((ImageClip)e).getMyImage().getRGB(((ImageClip)e).getMyImage().getWidth()/2, ((ImageClip)e).getMyImage().getHeight()/2))), e.evaluate(1, 0));
+	}
+	@Test
+	public void testDomainToImageScaleXImageWrap() {
 		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
 		assertEquals(0,((ImageWrap)e).domainToImageScaleX((double)-1,2));
 		assertEquals(255,((ImageWrap)e).domainToImageScaleX((double)1,2));
 	}
 	
 	@Test
-	public void testDomainToImageScaleY() {
+	public void testDomainToImageScaleYImageWrap() {
 		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
 		assertEquals(0,((ImageWrap)e).domainToImageScaleY((double)-1,2));
 		assertEquals(255,((ImageWrap)e).domainToImageScaleY((double)1,2));
+	}
+	@Test
+	public void testDomainToImageScaleXImageClip() {
+		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
+		assertEquals(0,((ImageClip)e).domainToImageScaleX((double)-1,2));
+		assertEquals(255,((ImageClip)e).domainToImageScaleX((double)1,2));
+	}
+	
+	@Test
+	public void testDomainToImageScaleYImageClip() {
+		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
+		assertEquals(0,((ImageClip)e).domainToImageScaleY((double)-1,2));
+		assertEquals(255,((ImageClip)e).domainToImageScaleY((double)1,2));
 	}
 	@Test
 	public void testParenthesis() {
