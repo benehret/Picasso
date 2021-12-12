@@ -230,7 +230,100 @@ public class ParsedExpressionTreeTests {
 		e = parser.makeExpression("wrap( x + x )");
 		assertEquals(new Wrap(new Addition(new X(), new X())), e);
 	}
-	
+	@Test
+	public void clampFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("clamp( x )");
+		assertEquals(new Clamp(new X()), e);
+		e = parser.makeExpression("clamp( y )");
+		assertEquals(new Clamp(new Y()), e);
+		e = parser.makeExpression("clamp( x + y )");
+		assertEquals(new Clamp(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void logFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("log( x )");
+		assertEquals(new Log(new X()), e);
+		e = parser.makeExpression("log( y )");
+		assertEquals(new Log(new Y()), e);
+		e = parser.makeExpression("log( x + y )");
+		assertEquals(new Log(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void yCrCbtoRGBFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("yCrCbtoRGB( x )");
+		assertEquals(new YCrCbtoRGB(new X()), e);
+		e = parser.makeExpression("yCrCbtoRGB( y )");
+		assertEquals(new YCrCbtoRGB(new Y()), e);
+		e = parser.makeExpression("yCrCbtoRGB( x + y )");
+		assertEquals(new YCrCbtoRGB(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void rgbToYCrCbFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("rgbToYCrCb( x )");
+		assertEquals(new RgbToYCrCb(new X()), e);
+		e = parser.makeExpression("rgbToYCrCb( y )");
+		assertEquals(new RgbToYCrCb(new Y()), e);
+		e = parser.makeExpression("rgbToYCrCb( x + y )");
+		assertEquals(new RgbToYCrCb(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void expFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("exp( x )");
+		assertEquals(new EulerExponentiation(new X()), e);
+		e = parser.makeExpression("exp( y )");
+		assertEquals(new EulerExponentiation(new Y()), e);
+		e = parser.makeExpression("exp( x + y )");
+		assertEquals(new EulerExponentiation(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void atanFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("atan( x )");
+		assertEquals(new ArcTan(new X()), e);
+		e = parser.makeExpression("atan( y )");
+		assertEquals(new ArcTan(new Y()), e);
+		e = parser.makeExpression("atan( x + y )");
+		assertEquals(new ArcTan(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void absFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("abs( x )");
+		assertEquals(new Absolute(new X()), e);
+		e = parser.makeExpression("abs( y )");
+		assertEquals(new Absolute(new Y()), e);
+		e = parser.makeExpression("abs( x + y )");
+		assertEquals(new Absolute(new Addition(new X(), new Y())), e);
+	}
+	@Test
+	public void perlinColorFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("perlinColor( x,y )");
+		assertEquals(new PerlinColor(new X(), new Y()), e);
+		e = parser.makeExpression("perlinColor( y,x )");
+		assertEquals(new PerlinColor(new Y(),new X()), e);
+		e = parser.makeExpression("perlinColor( x + y, y-x )");
+		assertEquals(new PerlinColor(new Addition(new X(), new Y()),new Substraction(new Y(), new X())), e);
+	}
+	@Test
+	public void perlinBWFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("perlinBW( x,y )");
+		assertEquals(new PerlinBW(new X(), new Y()), e);
+		e = parser.makeExpression("perlinBW( y,x )");
+		assertEquals(new PerlinBW(new Y(),new X()), e);
+		e = parser.makeExpression("perlinBW( x + y, y-x )");
+		assertEquals(new PerlinBW(new Addition(new X(), new Y()),new Substraction(new Y(), new X())), e);
+	}
+	// do not understand random failure
+	@Test
+	public void randomFunctionTests() {
+		ExpressionTreeNode e = parser.makeExpression("random()");
+		assertEquals(new RandomColor(), e);
+	}
+	@Test
+	public void ImageClipFunctionTests() throws IOException {
+		ExpressionTreeNode e = parser.makeExpression("imageClip( \"vortex.jpg\", x,y+y )");
+		assertEquals(new ImageClip("vortex.jpg",new X(),new Addition(new Y(), new Y())), e);
+		e = parser.makeExpression("imageClip( \"vortex.jpg\", x+x,y )");
+		assertEquals(new ImageClip("vortex.jpg",new Addition(new X(), new X()), new Y()), e);
+	}
 	@Test
 	public void ImageWrapFunctionTests() throws IOException {
 		ExpressionTreeNode e = parser.makeExpression("imageWrap( \"vortex.jpg\", x,y+y )");

@@ -84,7 +84,7 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor (-1/-1,-1/-1,-1/-1), c.evaluate(-1, -1));
 		assertEquals(new RGBColor (0, 0, 0), c.evaluate(0, 0));
 		assertEquals(new RGBColor (1/1, 1/1, 1/1), c.evaluate(1, 1));
-	}
+	} 
 	@Test
 	public void testMultiplicationEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("x*y");
@@ -155,7 +155,27 @@ public class EvaluatorTests {
 			assertEquals(new RGBColor(Math.tan(i),Math.tan(i),Math.tan(i)), e.evaluate(i,i));
 		}
 	}
-
+	@Test
+	public void testAbsEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("abs(x)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.abs(i),Math.abs(i),Math.abs(i)), e.evaluate(i,i));
+		}
+	}
+	@Test
+	public void tesExpEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("exp(x)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.exp(i),Math.exp(i),Math.exp(i)), e.evaluate(i,i));
+		}
+	}
+	@Test
+	public void testLogEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("log(x)");
+		for (int i = -1; i <= 1; i++) {
+			assertEquals(new RGBColor(Math.log(Math.abs(i)),Math.log(Math.abs(i)),Math.log(Math.abs(i))), e.evaluate(i,i));
+		}
+	}
 	@Test
 	public void testTanYEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("tan(y)");
@@ -175,6 +195,18 @@ public class EvaluatorTests {
 		e = parser.makeExpression("wrap(x+x+x+x)");
 		assertEquals(new RGBColor(0,0,0), e.evaluate(-1, -1));
 		assertEquals(new RGBColor(0,0,0), e.evaluate(1, 1));
+	}
+	@Test
+	public void testClampEvaluation() {
+		ExpressionTreeNode e = parser.makeExpression("clamp(x+x)");
+		assertEquals(new RGBColor(-1,-1,-1), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1));
+		e = parser.makeExpression("clamp(x+x+x)");
+		assertEquals(new RGBColor(-1,-1,-1), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1));
+		e = parser.makeExpression("clamp(x+x+x+x)");
+		assertEquals(new RGBColor(-1,-1,-1), e.evaluate(-1, -1));
+		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1));
 	}
 	
 	@Test
