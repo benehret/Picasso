@@ -83,10 +83,8 @@ public class EvaluatorInput implements Command<Pixmap> {
 		String input = myTextField.getText();
 		
 		history.add(input);
-		System.out.println("HISTORY: " + history);
 		// Increment the historyPosition by 1 so we're at the end
 		historyPosition = history.size() - 1;
-		System.out.println("SIZE: " + history.size());
 		historyPosition++;
 		
 		// check if the input we got is in the dictionary

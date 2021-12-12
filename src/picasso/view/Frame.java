@@ -60,7 +60,6 @@ public class Frame extends JFrame {
 					System.out.println("PRESSING UP");
 					EvaluatorInput.historyPosition--;
 					try {
-						System.out.println("Looking at: " + EvaluatorInput.history.get(EvaluatorInput.historyPosition));
 						textField.setText(EvaluatorInput.history.get(EvaluatorInput.historyPosition));
 					}
 					// Throw an error if we've went out of bounds and move it back in bounds
@@ -76,7 +75,6 @@ public class Frame extends JFrame {
 					System.out.println("PRESSING DOWN");
 					EvaluatorInput.historyPosition++;
 					try {
-						System.out.println("Looking at: " + EvaluatorInput.history.get(EvaluatorInput.historyPosition));
 						textField.setText(EvaluatorInput.history.get(EvaluatorInput.historyPosition));
 					}
 					// Throw an error if we've went out of bounds and move it back in bounds
