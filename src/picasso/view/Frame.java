@@ -38,6 +38,7 @@ public class Frame extends JFrame {
 		commands.add("Open", new Reader());
 		commands.add("Evaluate", new ThreadedCommand<Pixmap>(canvas, new Evaluater()));
 		commands.add("Save", new Writer());
+		commands.add("Random Expression",new ThreadedCommand<Pixmap>(canvas, new RandomEvaluator()));
 		commands.add("User Input", new ThreadedCommand<Pixmap>(canvas, new EvaluatorInput(this.textField)));
 
 		//add a JTextBox
