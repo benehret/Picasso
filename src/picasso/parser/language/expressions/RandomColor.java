@@ -1,4 +1,5 @@
 package picasso.parser.language.expressions;
+
 import java.util.Random;
 
 /**
@@ -8,11 +9,14 @@ import java.util.Random;
  * 
  */
 public class RandomColor extends NoParameterFunction {
+
+	private static final Random random = new Random();
+
 	/**
-	 * Create a random color expression that takes as a parameter the given expression
+	 * Create a random color expression that takes as a parameter the given
+	 * expression
 	 * 
 	 */
-	
 	public RandomColor() {
 	}
 
@@ -23,7 +27,7 @@ public class RandomColor extends NoParameterFunction {
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {
-		Random random = new Random();
+
 		double red = -1.0 + (1.0 - -1.0) * random.nextDouble();
 		double green = -1.0 + (1.0 - -1.0) * random.nextDouble();
 		double blue = -1.0 + (1.0 - -1.0) * random.nextDouble();
@@ -41,7 +45,7 @@ public class RandomColor extends NoParameterFunction {
 		if (obj == this) {
 			return true;
 		}
-		if (!(obj instanceof Random)) {
+		if (!(obj instanceof RandomColor)) {
 			return false;
 		}
 		return true;

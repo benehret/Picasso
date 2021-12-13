@@ -263,8 +263,8 @@ public class EvaluatorTests {
 		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1));
 		e = parser.makeExpression("clamp(x+x+x+x)");
 		assertEquals(new RGBColor(-1,-1,-1), e.evaluate(-1, -1));
-		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1));
-	}
+		assertEquals(new RGBColor(1,1,1), e.evaluate(1, 1)); 
+	} 
 	
 	@Test
 	public void testImageWrapEvaluation() {
@@ -273,39 +273,38 @@ public class EvaluatorTests {
 		 e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
 		assertEquals(new RGBColor(new Color(((ImageWrap)e).getMyImage().getRGB(((ImageWrap)e).getMyImage().getWidth()/2, ((ImageWrap)e).getMyImage().getHeight()/2))), e.evaluate(1, 0));
 	}
-	//image clip not working
 	@Test
 	public void testImageClipEvaluation() {
 		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
-		assertEquals(new RGBColor(new Color(((ImageClip)e).getMyImage().getRGB(((ImageClip)e).getMyImage().getWidth()/2, ((ImageClip)e).getMyImage().getHeight()/2))), e.evaluate(-1, 0));
+		assertEquals(new RGBColor(0.9529411764705882, 1.0 ,0.8352941176470587), e.evaluate(-1, 0));
 		 e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
-		assertEquals(new RGBColor(new Color(((ImageClip)e).getMyImage().getRGB(((ImageClip)e).getMyImage().getWidth()/2, ((ImageClip)e).getMyImage().getHeight()/2))), e.evaluate(1, 0));
+		assertEquals(new RGBColor(1.0, 0.9921568627450981 ,1.0), e.evaluate(1, 0));
 	}
 	@Test
 	public void testDomainToImageScaleXImageWrap() {
 		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
-		assertEquals(0,((ImageWrap)e).domainToImageScaleX((double)-1,2));
-		assertEquals(255,((ImageWrap)e).domainToImageScaleX((double)1,2));
+		assertEquals(0,ImageEvaluate.domainToImageScaleX((double)-1));
+		assertEquals(799,ImageEvaluate.domainToImageScaleX((double)1));
 	}
 	
 	@Test
 	public void testDomainToImageScaleYImageWrap() {
 		ExpressionTreeNode e = parser.makeExpression("imageWrap(\"vortex.jpg\",x+x,y)");
-		assertEquals(0,((ImageWrap)e).domainToImageScaleY((double)-1,2));
-		assertEquals(255,((ImageWrap)e).domainToImageScaleY((double)1,2));
+		assertEquals(0,ImageEvaluate.domainToImageScaleY((double)-1));
+		assertEquals(799,ImageEvaluate.domainToImageScaleY((double)1));
 	}
 	@Test
 	public void testDomainToImageScaleXImageClip() {
 		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
-		assertEquals(0,((ImageClip)e).domainToImageScaleX((double)-1,2));
-		assertEquals(255,((ImageClip)e).domainToImageScaleX((double)1,2));
+		assertEquals(0,ImageEvaluate.domainToImageScaleX((double)-1));
+		assertEquals(799,ImageEvaluate.domainToImageScaleX((double)1));
 	}
 	
 	@Test
 	public void testDomainToImageScaleYImageClip() {
 		ExpressionTreeNode e = parser.makeExpression("imageClip(\"vortex.jpg\",x+x,y)");
-		assertEquals(0,((ImageClip)e).domainToImageScaleY((double)-1,2));
-		assertEquals(255,((ImageClip)e).domainToImageScaleY((double)1,2));
+		assertEquals(0,ImageEvaluate.domainToImageScaleY((double)-1));
+		assertEquals(799,ImageEvaluate.domainToImageScaleY((double)1));
 	}
 	@Test
 	public void testParenthesis() {
