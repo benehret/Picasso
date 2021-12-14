@@ -26,3 +26,6 @@ The `images` directory contains some sample images generated from Picasso.  Some
 
 ##### allow users to use the up and down arrows to move through the history of expressions
 Start by adding inputs by typing in the field and hitting the "user input" button. Next, when you want to go up the history of the inputs, press the up key. When you want to go down the history, press the down key. If you go out of bounds (such as hitting up when you are already at the top), it will throw an exception.
+
+##### Allow users to generate random expressions
+When you run main, press the random expression button on the GUI and it will randomly generate an expression for you based on the functions we have. 

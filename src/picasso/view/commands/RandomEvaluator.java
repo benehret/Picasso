@@ -1,4 +1,5 @@
 package picasso.view.commands;
+
 import java.util.Random;
 import java.awt.Color;
 
@@ -27,57 +28,64 @@ import picasso.parser.IdentifierAnalyzer;
  * 
  * @author Robert C Duvall
  * @author Sara Sprenkle
- * @author Nicolas
+ * @author Danish
  */
 public class RandomEvaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 	private JTextField myTextField;
 	private ExpressionTreeNode expr;
-	public static List<String> history = new ArrayList<String>(); 
+	public static List<String> history = new ArrayList<String>();
 	public static int historyPosition = 0;
-	
-	public static List<String> xExpression = new ArrayList<String>(List.of("x","cos(x)","sin(x)","tan(x)","ceil(x)")); 
-	public static List<String> yExpression = new ArrayList<String>(List.of("y","cos(y)","sin(y)","tan(y)","ceil(y)"));
-	public static List<String> operator = new ArrayList<String>(List.of("-","+","/","*","%")); 
-	
+
+	public static List<String> xExpression = new ArrayList<String>(
+			List.of("random()", "perlinBW(x,y)", "perlinColor(x,y)", "x", "cos(x)", "sin(x)", "tan(x)", "ceil(x)",
+					"atan(x)", "clamp(x)", "wrap(x)", "log(x)", "floor(x)", "abs(x)"));
+
+	public static List<String> yExpression = new ArrayList<String>(
+			List.of("random()", "perlinBW(y,x)", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
+					"atan(y)", "abs(y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)"));
+
+	public static List<String> operator = new ArrayList<String>(List.of("-", "+", "/", "*", "%"));
+
+	/**
+	 * Outputs a randomly generated expression
+	 * 
+	 * @return randomExpression
+	 */
 	public static String generateRandom() {
-		
-		int indexForX = (int) (Math.random() * xExpression.size());
-		int indexForY = (int) (Math.random() * xExpression.size());
-		int indexForOperator = (int) (Math.random() * operator.size());
-		
-		String op = operator.get(indexForOperator);
-		String x = xExpression.get(indexForX);
-		String y = yExpression.get(indexForY);
-		
-		String randomExp = x + op + y;
-		
-		String looped ="";
-		for(int i = 0; i<1;i++) {
+
+		/**
+		 * int indexForX = (int) (Math.random() * xExpression.size()); int indexForY =
+		 * (int) (Math.random() * xExpression.size()); int indexForOperator = (int)
+		 * (Math.random() * operator.size());
+		 * 
+		 * String op = operator.get(indexForOperator); String x =
+		 * xExpression.get(indexForX); String y = yExpression.get(indexForY);
+		 * 
+		 * String randomExp = x + op + y;
+		 */
+		String expression = "";
+		int numOfExpression = (int) (Math.random() * 10 + 1);
+		for (int i = 0; i < numOfExpression; i++) {
 			Collections.shuffle(xExpression);
 			Collections.shuffle(yExpression);
 			Collections.shuffle(operator);
-			
-			String rand =xExpression.get(i) + operator.get(i) + yExpression.get(i);
-			
-			looped +=rand;
+
+			String rand = xExpression.get(1) + operator.get(1) + yExpression.get(1);
+
+			expression += rand;
+			if (i != numOfExpression) {
+				Collections.shuffle(operator);
+				expression += operator.get(1);
+			}
 		}
-		
-		return looped;
 
-	} 
-	
-	public static void main(String []args) {
-		System.out.println(generateRandom());
-		
+		String randomExpression = (String) expression.subSequence(0, expression.length() - 1);
+
+		return randomExpression;
+
 	}
-
-	public RandomEvaluator() {
-	}
-	
-	
-
 
 	/**
 	 * Evaluate an expression for each point in the image.
@@ -103,17 +111,12 @@ public class RandomEvaluator implements Command<Pixmap> {
 		double range = DOMAIN_MAX - DOMAIN_MIN;
 		return ((double) value / bounds) * range + DOMAIN_MIN;
 	}
-	
-	private String getOperator() {
-		return null;
-		
-	}
 
 	/**
 	 * 
 	 * A place holder for a more interesting way to build the expression.
 	 */
-	
+
 	private ExpressionTreeNode createExpression() {
 		// Note, when you're testing, you can use the ExpressionTreeGenerator to
 		// generate expression trees from strings, or you can create expression
@@ -121,8 +124,6 @@ public class RandomEvaluator implements Command<Pixmap> {
 
 		// String input = whatever we get form the JTExtBox
 		String input = generateRandom();
-		
-		
 		ExpressionTreeGenerator expTreeGen = new ExpressionTreeGenerator();
 		// ExpressionTreeNode expression = expTreeGen.makeExpression(input);
 		try {
