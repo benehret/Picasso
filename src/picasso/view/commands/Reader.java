@@ -3,6 +3,7 @@ package picasso.view.commands;
 import javax.swing.JFileChooser;
 
 import picasso.model.Pixmap;
+import picasso.parser.language.ExpressionReader;
 import picasso.util.FileCommand;
 
 /**
@@ -24,8 +25,15 @@ public class Reader extends FileCommand<Pixmap> {
 	 */
 	public void execute(Pixmap target) {
 		String fileName = getFileName();
-		if (fileName != null) {
+		if (fileName != null && (fileName.substring(fileName.length() - 4)).equals(".jpg")) {
 			target.read(fileName);
+		} else if (fileName != null && (fileName.substring(fileName.length() - 4)).equals(".exp")) {
+			ExpressionReader expR = new ExpressionReader(fileName);
+			Evaluater e = new Evaluater();
+			for(int i =0; i< ExpressionReader.getExpressionList().size(); i++ ) {
+				e.setExp(ExpressionReader.getExpressionList().get(i));
+				e.execute(target);
+			}
 		}
 	}
 }
