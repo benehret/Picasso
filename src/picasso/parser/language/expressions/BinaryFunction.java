@@ -24,7 +24,7 @@ public abstract class BinaryFunction extends ExpressionTreeNode {
 
 	/**
 	 * Returns the string representation of the function in the format "<ClassName>:
-	 * <parameter>"
+	 * <parameter>  <parameter2>"
 	 * 
 	 * @see java.lang.Object#toString()
 	 */
@@ -34,7 +34,7 @@ public abstract class BinaryFunction extends ExpressionTreeNode {
 		return classname.substring(classname.lastIndexOf(".")) + "(" + param + ")" + "("+ param2 + ")";
 	}
 
-	@Override
+	@Override 
 	public boolean equals(Object o) {
 		if (o == this) {
 			return true;

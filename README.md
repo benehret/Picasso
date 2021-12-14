@@ -29,3 +29,6 @@ Start by adding inputs by typing in the field and hitting the "user input" butto
 
 ##### Allow users to generate random expressions
 When you run main, press the random expression button on the GUI and it will randomly generate an expression for you based on the functions we have. 
+
+##### allow users to refer to history of expressions in this session by entering their history number prefixed by "$" (i.e., "$3")
+Start by adding inputs by typing in the field and hitting the "user input" button. Next, when you want to refer to a specific index in the history, type "$<integer>" into the text field and hit the "user input" button. This will set the text field to the appropriate string and also evaluate it. The indexes are not computer indexes, but human indexes. For example, in a history of ["cos(x)", "sin(x)", "x + y"], entering "$1" would return "cos(x)" and entering "$3" would return "x + y."

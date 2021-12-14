@@ -17,9 +17,10 @@ public class ErrorReporting {
     
     public static void reportException(Exception e)
     {
-    	// TODO Make the message just be the dialogue not the whole shebang
-    	// gonna have to do some string slicing after finding the colon
+    	// slice off the stacktrace part of the exception message
+    	int colon = e.toString().lastIndexOf(":");
+        String exceptionMessage = e.toString().substring(colon+1);
 		JOptionPane.showMessageDialog(myFrame,
-    		    e.toString());
+    		    exceptionMessage);
 	}
 }
