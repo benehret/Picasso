@@ -32,6 +32,7 @@ public class Reader extends FileCommand<Pixmap> {
 			Evaluater e = new Evaluater();
 			for(int i =0; i< ExpressionReader.getExpressionList().size(); i++ ) {
 				if(!ExpressionReader.getExpressionList().get(i).contains("//")) {
+					System.out.println(ExpressionReader.getExpressionList());
 					e.setExp(ExpressionReader.getExpressionList().get(i));
 					e.execute(target);
 				}

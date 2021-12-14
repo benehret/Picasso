@@ -27,9 +27,7 @@ public class ExpressionReader {
 	 * @return the list of expressions
 	 */
 	public static List<String> getExpressionList() {
-		if (expressionsList == null) {
-			readExpressionFromFile();
-		}
+		readExpressionFromFile();
 		return expressionsList;
 	}
 
