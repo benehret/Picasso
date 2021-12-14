@@ -87,6 +87,15 @@ public class EvaluatorInput implements Command<Pixmap> {
 		historyPosition = history.size() - 2;
 		historyPosition++;
 		
+		// If the first char is a $, start referencing the history
+		if (input.charAt(0) == '$')
+		{
+			// take the second char of the string, convert it to a number, use that number (minus 1 to make it more human intuitive) 
+			// to get the appropriate string out of the history list, then set the text field to that string
+			myTextField.setText(history.get(Integer.parseInt((myTextField.getText().substring(1)))-1));
+			input = myTextField.getText();
+		}
+		
 		// check if the input we got is in the dictionary
 		for (String key : IdentifierAnalyzer.getMap().keySet()) {
 			// https://www.geeksfor					EvaluatorInput.history.get(EvaluatorInput.historyPosition - 1);
