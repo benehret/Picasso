@@ -7,10 +7,9 @@ import java.util.List;
 import java.util.Scanner;
 
 /**
- * Handles reading the available built-in functions from a file.
+ * Handles reading the expression from a file.
  * 
- * @author Robert C. Duvall
- * @author Sara Sprenkle
+ * @author Bennett Ehret
  * 
  */
 public class ExpressionReader {
