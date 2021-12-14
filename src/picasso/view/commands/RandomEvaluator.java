@@ -33,10 +33,7 @@ import picasso.parser.IdentifierAnalyzer;
 public class RandomEvaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
-	private JTextField myTextField;
 	private ExpressionTreeNode expr;
-	public static List<String> history = new ArrayList<String>();
-	public static int historyPosition = 0;
 
 	public static List<String> xExpression = new ArrayList<String>(
 			List.of("random()", "perlinBW(x,y)", "perlinColor(x,y)", "x", "cos(x)", "sin(x)", "tan(x)", "ceil(x)",
