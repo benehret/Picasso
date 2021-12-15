@@ -35,15 +35,15 @@ public class RandomEvaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MAX = 1;
 	private ExpressionTreeNode expr;
 
-	public static List<String> xExpression = new ArrayList<String>(
+	private static List<String> xExpression = new ArrayList<String>(
 			List.of("random()", "perlinBW(x,y)", "perlinColor(x,y)", "x", "cos(x)", "sin(x)", "tan(x)", "ceil(x)",
-					"atan(x)", "clamp(x)", "wrap(x)", "log(x)", "floor(x)", "abs(x)"));
+					"atan(x)", "clamp(x)", "wrap(x)", "log(x)", "floor(x)", "abs(x)","rgbToYCrCb(x)","yCrCbtoRGB(x)","exp(x)"));
 
-	public static List<String> yExpression = new ArrayList<String>(
+	private static List<String> yExpression = new ArrayList<String>(
 			List.of("random()", "perlinBW(y,x)", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
-					"atan(y)", "abs(y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)"));
+					"atan(y)", "abs(y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)","rgbToYCrCb(y)","yCrCbtoRGB(y)","exp(y)"));
 
-	public static List<String> operator = new ArrayList<String>(List.of("-", "+", "/", "*", "%"));
+	private static List<String> operator = new ArrayList<String>(List.of("-", "+", "/", "*", "%"));
 
 	/**
 	 * Outputs a randomly generated expression
@@ -63,7 +63,7 @@ public class RandomEvaluator implements Command<Pixmap> {
 		 * String randomExp = x + op + y;
 		 */
 		String expression = "";
-		int numOfExpression = (int) (Math.random() * 10 + 1);
+		int numOfExpression = (int) (Math.random() * 8 + 1);
 		for (int i = 0; i < numOfExpression; i++) {
 			Collections.shuffle(xExpression);
 			Collections.shuffle(yExpression);
