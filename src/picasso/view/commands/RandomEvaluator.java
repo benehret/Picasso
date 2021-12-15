@@ -36,12 +36,12 @@ public class RandomEvaluator implements Command<Pixmap> {
 	private ExpressionTreeNode expr;
 
 	private static List<String> xExpression = new ArrayList<String>(
-			List.of("random()", "perlinBW(x,y)", "perlinColor(x,y)", "x", "cos(x)", "sin(x)", "tan(x)", "ceil(x)",
-					"atan(x)", "clamp(x)", "wrap(x)", "log(x)", "floor(x)", "abs(x)","rgbToYCrCb(x)","yCrCbtoRGB(x)","exp(x)"));
+			List.of("random()", "perlinBW(x,y)", "perlinColor(x,y)", "x", "cos(x)", "sin(x)", "tan(x)", "ceil(x)","sin(y/x)",
+					"atan(x)", "clamp(x)", "wrap(x)", "log(x)","atan(y/x)", "floor(x)", "abs(x)","rgbToYCrCb(x)","yCrCbtoRGB(x)","exp(x)"));
 
 	private static List<String> yExpression = new ArrayList<String>(
 			List.of("random()", "perlinBW(y,x)", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
-					"atan(y)", "abs(y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)","rgbToYCrCb(y)","yCrCbtoRGB(y)","exp(y)"));
+					"atan(y)","cos(y/x)", "abs(y)","tan(x*y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)","rgbToYCrCb(y)","yCrCbtoRGB(y)","exp(y)"));
 
 	private static List<String> operator = new ArrayList<String>(List.of("-", "+", "/", "*", "%"));
 
@@ -63,7 +63,7 @@ public class RandomEvaluator implements Command<Pixmap> {
 		 * String randomExp = x + op + y;
 		 */
 		String expression = "";
-		int numOfExpression = (int) (Math.random() * 8 + 1);
+		int numOfExpression = (int) (Math.random() * 8 + 3);
 		for (int i = 0; i < numOfExpression; i++) {
 			Collections.shuffle(xExpression);
 			Collections.shuffle(yExpression);
