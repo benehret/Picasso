@@ -34,13 +34,12 @@ public class RandomEvaluator implements Command<Pixmap> {
 	public static final double DOMAIN_MIN = -1;
 	public static final double DOMAIN_MAX = 1;
 	private ExpressionTreeNode expr;
-
 	private static List<String> xExpression = new ArrayList<String>(
 			List.of("random()", "perlinBW(x,y)", "perlinColor(x,y)", "x", "cos(x)", "sin(x)", "tan(x)", "ceil(x)","sin(y/x)",
 					"atan(x)", "clamp(x)", "wrap(x)", "log(x)","atan(y/x)", "floor(x)", "abs(x)","rgbToYCrCb(x)","yCrCbtoRGB(x)","exp(x)"));
 
 	private static List<String> yExpression = new ArrayList<String>(
-			List.of("random()", "perlinBW(y,x)", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
+			List.of("random()", "perlinBW(y,x)","perlinBW(y*x,cos(x))", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
 					"atan(y)","cos(y/x)", "abs(y)","tan(x*y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)","rgbToYCrCb(y)","yCrCbtoRGB(y)","exp(y)"));
 
 	private static List<String> operator = new ArrayList<String>(List.of("-", "+", "/", "*", "%"));

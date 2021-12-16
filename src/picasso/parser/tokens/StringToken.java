@@ -1,5 +1,9 @@
 package picasso.parser.tokens;
-
+/**
+ * represents a string token
+ * 
+ * @author  Bennett
+ */
 public class StringToken extends Token {
 
 	private final String value;

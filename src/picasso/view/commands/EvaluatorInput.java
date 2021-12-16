@@ -86,7 +86,11 @@ public class EvaluatorInput implements Command<Pixmap> {
 		// Increment the historyPosition by 1 so we're at the end
 		historyPosition = history.size() - 2;
 		historyPosition++;
-		
+		if (input.contains("//")){
+			input=input.substring(0, input.indexOf("//"));
+		}
+
+			
 		// If the first char is a $, start referencing the history
 		if (input.charAt(0) == '$')
 		{
