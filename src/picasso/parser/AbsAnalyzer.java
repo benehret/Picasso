@@ -7,7 +7,7 @@ import picasso.parser.language.expressions.Absolute;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the ceiling function.
+ * Handles parsing the absolute  function.
  * 
  * @author Sara Sprenkle
  * 

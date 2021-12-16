@@ -6,7 +6,7 @@ import picasso.parser.language.ExpressionTreeNode;
 import picasso.parser.language.expressions.RandomColor;
 import picasso.parser.tokens.Token;
 /**
- * Handles parsing the cosine function.
+ * Handles parsing the random function.
  * 
  * @author John Adekola
  * 

@@ -18,10 +18,10 @@ public class Cos extends UnaryFunction {
 		super(param);
 	}
 	/**
-	 * Evaluates this expression at the given x,y point by evaluating the floor of
+	 * Evaluates this expression at the given x,y point by evaluating the cosine of
 	 * the function's parameter.
 	 * 
-	 * @return the color from evaluating the floor of the expression's parameter
+	 * @return the color from evaluating the cosine of the expression's parameter
 	 */
 	@Override
 	public RGBColor evaluate(double x, double y) {

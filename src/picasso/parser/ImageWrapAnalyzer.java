@@ -8,7 +8,7 @@ import picasso.parser.tokens.StringToken;
 import picasso.parser.tokens.Token;
 
 /**
- * Handles parsing the  for the multiplication function
+ * Handles parsing the  for the image wrap function
  * 
  * @author Robert C. Duvall
  * @author Sara Sprenkle
