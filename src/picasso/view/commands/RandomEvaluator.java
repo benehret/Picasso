@@ -39,7 +39,7 @@ public class RandomEvaluator implements Command<Pixmap> {
 					"atan(x)", "clamp(x)", "wrap(x)", "log(x)","atan(y/x)", "floor(x)", "abs(x)","rgbToYCrCb(x)","yCrCbtoRGB(x)","exp(x)"));
 
 	private static List<String> yExpression = new ArrayList<String>(
-			List.of("random()", "perlinBW(y,x)","perlinBW(y*x,cos(x))", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
+			List.of("perlinColor(x^x, y/x+x)", "perlinBW(y,x)","perlinBW(y*x,cos(x))", "perlinColor(x,y)", "y", "cos(y)", "sin(y)", "tan(y)", "ceil(y)",
 					"atan(y)","cos(y/x)", "abs(y)","tan(x*y)", "atan(y)", "clamp(y)", "log(y)", "floor(y)","rgbToYCrCb(y)","yCrCbtoRGB(y)","exp(y)"));
 
 	private static List<String> operator = new ArrayList<String>(List.of("-", "+", "/", "*", "%"));
