@@ -1,4 +1,4 @@
-Project from CSCI-209: Software Development.
+A group project from CSCI-209: Software Development.
 
 ## Authors
 Danish, Nicholas, John, Bennett
